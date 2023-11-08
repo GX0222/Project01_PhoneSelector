@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+
+    <h4>JavaScript Date Objects</h4>
+    <p><a href="https://www.w3schools.com/js/js_dates.asp">https://www.w3schools.com/js/js_dates.asp</a></p>
+    <h4>JavaScript Get Date Methods</h4>
+    <p><a href="https://www.w3schools.com/js/js_date_methods.asp">https://www.w3schools.com/js/js_date_methods.asp</a>
+    </p>
+    <hr>
+    <pre>
+    生成日期物件的方法：
+        new Date()
+        new Date(milliseconds)
+        new Date(dateString)
+        new Date(year, month, day, hours, minutes, seconds, milliseconds)
+    </pre>
+
+    <script>
+        // 宣告一個日期物件
+        let x = new Date();
+        console.log(x);
+        let y = new Date(1999, 1, 22);    // let y = new Date("1999-02-22");
+        console.log(y);
+
+        // 取得年份
+        console.log(x.getFullYear());
+
+        // 取得月份 (請注意這裡)
+        console.log(x.getMonth() + 1);    // 月份從 0 開始
+
+        // 取得日期
+        console.log(x.getDate());         // 日期從 1 開始算
+
+        // 取得星期 (請注意這裡)            // 星期從 0 開始算
+        console.log(x.getDay() + 1);
+
+        // 取得時間                        // 小時從 0 開始算
+        console.log(x.getTime());
+        console.log(x.getHours() + 1);
+
+        // 取得分鐘
+        console.log(x.getMinutes());
+
+
+        console.clear();
+
+        // 若日期物件生成後，我們需要加一天
+        console.log(x);
+        x.setDate(x.getDate() + 1);
+        console.log(x);
+
+        // 若日期物件生成後，我們需要加一個月
+        x.setMonth(x.getMonth() + 1);
+        console.log(x);
+
+        console.clear();
+
+        // 小練習：如何透過日期的加減，取得這個月的最後一天?
+        let w = new Date("1999-03-31");
+        console.log(w);
+        w.setDate(1);
+        w.setMonth(w.getMonth() + 1);
+        w.setDate(0);
+        console.log(w);
+
+        console.clear();
+
+        // 小練習：宣告兩個日期物件，並指定日期後，進行日期相減
+        // millisecond = 86400000 = 1000*60*60*24
+        let x1 = new Date();
+        let y1 = new Date("2023-11-15");
+        let z1 = (y1 - x1) / 86400000;
+        console.log(z1);
+
+    </script>
+
+</body>
+
+</html>

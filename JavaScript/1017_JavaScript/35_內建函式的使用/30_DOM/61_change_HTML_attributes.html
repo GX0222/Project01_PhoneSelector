@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+
+    <h3>點選圖片後，置換成另外一張圖片</h3>
+
+    <!-- 10. 設定一張圖片 -->
+    <img id="my_img" src="../../image/like.png" alt="X" onclick="change_img()">
+
+    <script>
+
+        // 11. 取得上一個步驟的圖片
+
+        // 20. 設定點選圖片後，換成另外一張圖片
+        function change_img() {
+            var x = document.getElementById("my_img").src;
+            console.log(x);
+            // alert("123");
+            // document.getElementById("my_img").src = "../../image/like.png";
+            if ((document.getElementById("my_img").src) == "../../image/like.png") {
+                document.getElementById("my_img").src = "../../image/find.png";
+                console.log("成功1");
+            }
+            else {
+                document.getElementById("my_img").src = "../../image/like.png";
+                console.log("成功2"+x);
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

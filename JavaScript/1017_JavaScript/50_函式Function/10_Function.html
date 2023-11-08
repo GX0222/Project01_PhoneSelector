@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 60s 中火 -->
+    <script>
+        // JavaScript 參數數量可以和資料數量不一致
+        // => 不一致不算錯
+        // => 宣告沒給直就是 undefined
+        var x = 10;
+        function 加熱(x, y) {
+            var temp = x;
+            console.log(temp);
+        }
+        加熱(60, "中火");
+        console.log(x);
+        console.clear();
+
+        // 定義函式的方法:
+        // 1. function(){}
+        // 2. var 名稱 = function(){}
+        var x2 = function (x = 100, y = 50) {
+            console.log(x);
+            console.log(y);
+            console.log(x + y); // NaN
+        }
+        x2(20);
+
+        console.clear();
+
+        function zoo () {
+            console.log("動物園");
+            // return {a:111,b:222,c:333};
+            return function() {
+                console.log("OOO");
+            }
+        }
+        var x =zoo();
+        console.log(x);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>this 事關鍵字</h3>
+    <script>
+        // console.log(this); // Window 物件
+
+        // 在物件裡面的 一般函式 this 指向物件本人
+        // 在物件裡面的 箭頭函式 this 指向 window 物件
+
+        var apple = {
+            bee: 100,
+            cat: () => {
+                console.log(this);
+            }
+            // function () {
+            //     console.log(this);
+            //     console.log(this.bee);
+            //     console.log(bee);
+            // }
+        }
+        apple.cat();
+    </script>
+</body>
+
+</html>

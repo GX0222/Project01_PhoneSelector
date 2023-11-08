@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <script>
+
+        // 10. 使用 for in，逐一尋覽"物件"屬性
+        var s1 = {
+            s_name:"皮卡",
+            s_age:13
+        }
+        console.log(s1.s_name);
+        console.log(s1["s_name"]);
+        for (let apple in s1) {
+            console.log(apple);
+            console.log(s1[apple]); 
+            // apple[1] = s_name apple[2] = s_age
+        }
+        
+        // 20. 使用 for in，逐一尋覽"陣列"資料(空的會排除)
+        var s2 = ["today","banana","beer","tea"];
+        s2[7]="pc";
+        console.log(s2);
+        for (let i in s2) {
+            console.log(i);
+            console.log(s2[i]);
+        }
+
+    </script>
+</body>
+
+</html>

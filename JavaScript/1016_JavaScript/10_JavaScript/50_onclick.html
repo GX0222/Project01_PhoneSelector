@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+
+    <!-- 10. 於網頁放置一顆 按鈕(A) -->
+
+    <!-- 15. 測試加入滑鼠點擊事件，並直接呼叫 console.log() -->
+    <button onclick="console.log(123)">按鈕(A)</button>
+    <!-- 
+        Q：會不會看見123？
+        A：會
+
+        Q：所以 JavaScript 可以寫在那些地方？
+        A：<script> 和事件後方
+     -->
+
+    <!-- 20. 於網頁放置一顆 按鈕(B) ，也加入點擊事件，事件中執行指定的 function: btnClick -->
+
+    <!-- 25. function內容：在 console 顯示一段文字 -->
+    <button onclick="btnClick()">按鈕(B)</button>
+    <script>
+        // 結構/公式(背)：function 自己定義的名稱(參數){要做的事}
+        function btnClick() {
+            console.log("MHW");
+        }
+    </script>
+    
+</body>
+
+</html>

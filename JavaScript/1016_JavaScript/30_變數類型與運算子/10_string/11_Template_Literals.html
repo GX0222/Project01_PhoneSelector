@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+
+    <p id="apple"></p>
+    <script>
+        // 10. 產生字串，並顯示到控制台
+        var msg = "我想要去吃公益路上的生魚片";
+        console.log(msg);
+
+        // 20. 透過加號(+)串接變數和字串，並顯示到控制台
+        var food = ["生魚片","鼎王","牛屋","輕井澤","麥當勞"];
+        var road = "公益路";
+        var msg2 = "我想要去吃" + road + "上的" + food[2];
+        console.log(msg2);
+
+
+        // 21. `` Template Literals：中文翻譯為 樣板字面值、模板字串等，用 「` `」組成
+        var msg3 = `我想要去吃${road}上的${food[Math.floor(Math.random()*5)]}`;
+        console.log(msg3);
+
+        document.getElementById("apple").innerText = msg3;
+    </script>
+
+</body>
+
+</html>

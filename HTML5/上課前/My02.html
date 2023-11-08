@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .navdiv {
+            display: flex;
+            /* background-color: red; */
+            height: 40px;
+            width: 400px;
+            text-align: center;
+            padding-top: 4.5px;
+
+            position: relative;
+            left: -200px;
+
+        }
+
+        .innavdiv {
+            flex: 1;
+            font-size: 20px;
+            /* background-color: aqua; */
+            padding: 4px 0 0 0;
+            height: 80%;
+            color: aliceblue;
+        }
+
+        .innavborder1 {
+            border-left: 1.5px solid gray;
+        }
+
+        .backdiv {
+            background-color: black;
+            padding-left: 50%;
+        }
+
+        .opdiv1 {
+            background-color: black;
+            color: aliceblue;
+            height: 250px;
+            width: 200px;
+            position: absolute;
+            left: -100px;
+            margin-left: 50%;
+            margin-top: 9px;
+            visibility: hidden;
+            text-align: left;
+        }
+
+        .opdiv2 {
+            background-color: black;
+            color: aliceblue;
+            height: 250px;
+            width: 200px;
+            position: absolute;
+            left: 0px;
+            margin-left: 50%;
+            margin-top: 9px;
+            visibility: hidden;
+            text-align: left;
+        }
+
+        .opdiv3 {
+            background-color: black;
+            color: aliceblue;
+            height: 250px;
+            width: 200px;
+            position: absolute;
+            left: 100px;
+            margin-left: 50%;
+            margin-top: 9px;
+            visibility: hidden;
+            text-align: left;
+        }
+
+        .myul1 {
+            font-size: 20px;
+        }
+
+        /* .opdiv1:has(#myop1:hover) {
+            visibility: visible;
+        } */
+
+        #myop1:hover {
+            color: aqua;
+        }
+        
+        #myop2:hover {
+            color: aqua;
+        }
+
+        #myop3:hover {
+            color: aqua;
+        }
+
+        #myop1:hover>#op1 {
+            visibility: visible;
+        }
+
+        #myop2:hover>#op2 {
+            visibility: visible;
+        }
+
+        #myop3:hover>#op3 {
+            visibility: visible;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <div class="backdiv">
+        <div class="navdiv">
+            <div class="innavdiv" id="mylogo">
+                logo
+            </div>
+
+            <div class="innavdiv innavborder1" id="myop1">
+                選項1
+                <div class="opdiv1" id="op1">
+                    <ul class="myul1">
+                        <li>1-1</li>
+                        <li>1-2</li>
+                        <li>1-3</li>
+                        <li>1-4</li>
+                        <li>1-5</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="innavdiv innavborder1" id="myop2">
+                選項2
+                <div class="opdiv2" id="op2">
+                    <ul class="myul1">
+                        <li>2-1</li>
+                        <li>2-2</li>
+                        <li>2-3</li>
+                        <li>2-4</li>
+                        <li>2-5</li>
+                    </ul>
+                </div>
+                
+            </div>
+
+            <div class="innavdiv innavborder1" id="myop3">
+                選項3
+                <div class="opdiv3" id="op3">
+                    <ul class="myul1">
+                        <li>3-1</li>
+                        <li>3-2</li>
+                        <li>3-3</li>
+                        <li>3-4</li>
+                        <li>3-5</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+</body>
+
+</html>

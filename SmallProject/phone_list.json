@@ -1,0 +1,64 @@
+[
+    {
+        "ph_id" : 1,
+        "ph_name" : "iPhone 15 pro",
+        "ph_brand" : "Apple",
+        "scr_size" : 6.1,
+        "ph_img" : ""
+    },
+    {
+        "ph_id" : 2,
+        "ph_name" : "Xperia 5 V",
+        "ph_brand" : "Sony",
+        "scr_size" : 6.1,
+        "ph_img" : ""
+    },{
+        "ph_id" : 3,
+        "ph_name" : "Xperia 5 V",
+        "ph_brand" : "Sony",
+        "scr_size" : 6.1,
+        "ph_img" : ""
+    },
+    {
+        "ph_id" : 4,
+        "ph_name" : "Xperia 5 V",
+        "ph_brand" : "Sony",
+        "scr_size" : 6.1,
+        "ph_img" : ""
+    },
+    {
+        "ph_id" : 5,
+        "ph_name" : "Xperia 5 V",
+        "ph_brand" : "Sony",
+        "scr_size" : 6.1,
+        "ph_img" : ""
+    },
+    {
+        "ph_id" : 6,
+        "ph_name" : "Xperia 5 V",
+        "ph_brand" : "Sony",
+        "scr_size" : 6.1,
+        "ph_img" : ""
+    },
+    {
+        "ph_id" : 7,
+        "ph_name" : "Xperia 5 V",
+        "ph_brand" : "Sony",
+        "scr_size" : 6.1,
+        "ph_img" : ""
+    },
+    {
+        "ph_id" : 8,
+        "ph_name" : "Xperia 5 V",
+        "ph_brand" : "Sony",
+        "scr_size" : 6.1,
+        "ph_img" : ""
+    },
+    {
+        "ph_id" : 9,
+        "ph_name" : "Xperia 5 V",
+        "ph_brand" : "Sony",
+        "scr_size" : 6.1,
+        "ph_img" : ""
+    }
+]

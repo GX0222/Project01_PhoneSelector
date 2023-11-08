@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+
+    <!-- <img> 透過 src 屬性 設定圖片 -->
+    <img src="" alt="">
+
+    <!-- 10. 相對路徑 -->
+
+    <!-- 11. 圖片跟文件在同一層目錄 -->
+    <!-- 試試看，設定 puppy.jpg-->
+    <img src="puppy.jpg" alt="">
+
+    <!-- 12. 圖片在下一層目錄 -->
+    <!-- 試試看，設定 media/cat.jpg、
+                     ./media/cat.jpg -->
+    <img src="media/cat.jpg">
+
+    <!-- 13. 圖片在上一層目錄 -->
+    <!-- 試試看，設定 ../10_HTML5/img/kitty.jpg-->
+    <img src="../10_HTML5/img/kitty.jpg" alt="找不到13">
+
+    <!-- 20. 絕對路徑 -->
+    <!-- 試試看，設定 C:\\kitty.jpg-->
+    <!-- 提示: 點兩下直接開啟 .html 檔案 vs 透過 live server
+               觀察網址: file://  vs  live server: http:// -->
+
+        <!-- <img src="D:\\資展_EEIT73\0928\上課前\HTML\10_HTML5\img\kitty.jpg" alt="找不到20"> -->
+
+    
+    <!-- 30. alt 屬性: 替代文字-->
+
+        <!-- <img src="" alt="找不到30"> -->
+
+
+    <!-- 40. height, width 屬性 -->
+    
+    <!-- 41. 設定像素 width="50" -->
+    <img src="./puppy.jpg" width="50">
+    <img src="./puppy.jpg" height="100">
+    
+
+    <!-- 42. style="width:50%;" -->
+    <!--以父元素為基準-->
+    <img src="./puppy.jpg" style="width: 50%;">
+    <img src="./puppy.jpg" style="height: 50%;">
+
+
+</body>
+
+</html>

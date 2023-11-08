@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var apple = () => { console.log("apple test") }
+        apple();
+        // bee ()=>{console.log("bee test")} 不能
+        // -----------------------------------------
+        // 箭頭左邊只有一個參數時
+        // -> ()可以移除
+
+        // F只做一件事叫做return
+        // -> {} 和 return 可以「同時」移除
+        var banana = x => x * 3;
+        console.log(banana(2));
+    </script>
+</body>
+
+</html>

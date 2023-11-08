@@ -1,0 +1,14 @@
+create database ticketdb default character set utf8;
+use ticketdb;
+create table concert
+(
+  concertId int auto_increment not null primary key,
+  concertName varchar(30),
+  count int
+);
+
+insert into concert (concertName, count) values 
+  ('Jody''s last conert', 1000),
+  ('Jeter say good-bye', 2000);
+
+select * from concert;

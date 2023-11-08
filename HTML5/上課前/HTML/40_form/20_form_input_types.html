@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <!-- 參照 20_form_input_types_完成圖.png 製作一份表單 -->
+
+    <!-- step1: 標題 -->
+    <!-- step2: 加入一個表單 <form> -->
+    <!-- step3. 在<form>表單內加入<fieldset>群組並給予說明 -->
+    <!-- step4. 在表單<form>內加入姓名和輸入框 -->
+    <!-- step5. 在表單<form>內加入電話和輸入框 -->
+    <!-- step6. 加入職業和單選框 -->
+    <!-- step7. 加入年紀和單選框、交通工具和複選框，步驟和 step6. 類似 -->
+    <h2>通勤工具使用調查</h2>
+    <form>
+        <fieldset>
+            <legend>基本資料</legend>
+            <label for="name1">姓名：</label>
+            <input type="text" id="name1">
+            <br>
+            <label for="tel1">電話：</label>
+            <input type="tel" id="tel1">
+        </fieldset>
+
+        職業：
+        <input type="radio" name="job" id="student"><label for="student">學生</label>
+        <input type="radio" name="job" id="teacher"><label for="teacher">老師</label>
+        <input type="radio" name="job" id="else"><label for="else">其他</label>
+
+        <br>
+
+        年紀：
+        <input type="radio" name="old" id="y2030"><label for="y2030">20-30</label>
+        <input type="radio" name="old" id="y3040"><label for="y3040">30-40</label>
+        <input type="radio" name="old" id="y4050"><label for="y4050">40-50</label>
+        <input type="radio" name="old" id="y50"><label for="y50">50以上</label>
+
+        <br>
+
+        交通工具：
+        <input type="checkbox" name="go" id="bike"><label for="bike">腳踏車</label>
+        <input type="checkbox" name="go" id="moto"><label for="moto">機車</label>
+        <input type="checkbox" name="go" id="ship"><label for="ship">船</label>
+        <input type="checkbox" name="go" id="else2"><label for="else2">其他</label>
+
+    </form>
+
+</body>
+
+</html>

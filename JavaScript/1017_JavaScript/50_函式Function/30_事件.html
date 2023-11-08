@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p id="apple">鋼之煉金術師</p>
+    <button id="bee">我是按鈕1</button>
+    <button id="cat">我是按鈕2</button>
+    <script>
+        console.log(apple.innerText);
+        // ID可以直接呼叫，賦予其事件
+        bee.onclick = function (){
+            console.log("123");
+        }
+
+        // .addEventListener() 也可以賦予其事件
+        cat.addEventListener("click",function(){
+            console.log("87879487");
+        })
+    </script>
+</body>
+
+</html>

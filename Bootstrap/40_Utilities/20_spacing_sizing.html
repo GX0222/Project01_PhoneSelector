@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spacing and Sizing</title>
+    <link rel="stylesheet" href="../_css/bootstrap.css">
+    <script src="../_js/bootstrap.bundle.js"></script>
+
+
+    <style>
+        .box {
+            height: 25vh;
+            /* 25vh:視窗高度25% */
+            background-color: lightcoral;
+            margin-bottom: 10px;
+        }
+
+        .box>div {
+            background-color: lightskyblue;
+            margin-bottom: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+
+        <h4>官方網站-Sizing</h4>
+        <p><a
+                href='https://getbootstrap.com/docs/5.2/utilities/sizing/'>https://getbootstrap.com/docs/5.2/utilities/sizing/</a>
+        </p>
+        <h4>官方網站-Spacing</h4>
+        <p><a
+                href="https://getbootstrap.com/docs/5.2/utilities/spacing/">https://getbootstrap.com/docs/5.2/utilities/spacing/</a>
+        </p>
+        <h4>Utilities / Helper Classes> 頁面上搜尋 Spacing</h4>
+        <p><a
+                href="https://www.w3schools.com/bootstrap5/bootstrap_utilities.php">https://www.w3schools.com/bootstrap5/bootstrap_utilities.php</a>
+        </p>
+        <hr>
+
+        <!-- 10. 建立巢套的 div 元素
+                 a. 外層 div 使用 .box 類別；在上方 style 區段定義寬度和背景底色等
+                 b. 內層 div 使用 bootstrap 5 提供的 .w-* 類別 -->
+        <div class="box">
+            <div class="w-25">w-25vh</div>
+            <div class="w-50">w-50vh</div>
+            <div class="w-75">w-75vh</div>
+            <div class="w-100">w-100vh</div>
+        </div>
+
+        <!-- 20. 複製步驟 10 ，內層 div 改為使用 bootstrap 5 提供的 .h-* 類別 -->
+        <div class="box">
+            <div class="h-25">h-25</div>
+            <!-- <div class="h-50">h-50</div> -->
+            <!-- <div class="h-75">h-75</div> -->
+            <!-- <div class="h-100">h-100</div> -->
+        </div>
+
+        <!-- 實驗 : 為什麼高度會失效 -->
+        <div style="height: 100px; background-color: aquamarine;">
+            <div class="h-75 bg-info">h-75</div>
+        </div>
+
+        <hr>
+
+        <!-- 30. 同上，測試 bootstrap 5 提供的 .p-* 類別 -->
+        <!-- .{p|m}{s|e|t|b|x|y|不帶值}-{數字0~5} -->
+        <div class="box">
+            <div class="w-25 p-5">MH</div>
+        </div>
+
+        <hr>
+
+        <!-- 40. 同上，測試 bootstrap 5 提供的 .m-* 類別 -->
+        <div class="box">
+            <div class="w-25">MH</div>
+            <div class="w-25 m-5">MH</div>
+            <div class="w-25">MH</div>
+        </div>
+
+        <hr>
+
+        <!-- 50. 測試 bootstrap 5 提供的 .m-auto 類別 -->
+        <div class="box">
+            <div class="w-25">MH</div>
+            <div class="w-25 m-auto">MH</div>
+            <div class="w-25">MH</div>
+        </div>
+
+    </div>
+</body>
+
+</html>

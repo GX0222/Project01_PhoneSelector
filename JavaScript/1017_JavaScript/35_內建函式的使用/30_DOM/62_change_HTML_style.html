@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+
+    <button id="my_button" onclick="click_button()">按鈕</button>
+    <p id="demo" style="font-size: 10px;">點選圖片後，放大圖片和文字</p>
+
+    <!-- 10. 設定一張圖片 -->
+    <img id="my_img" src="../../image/notification.png" onclick="click_img()">
+
+    <script>
+        var function_count = 1;
+        function click_img() {
+            // 20. 網頁的 圖片的 樣式的 寬度 改變
+            // 21. 網頁的 圖片的 樣式的 高度 改變
+            // 22. 網頁的 demo的 樣式的 字型 改變
+
+            if ((function_count % 2) == 1) {
+                document.getElementById("my_img").style.width = "500px";
+                // document.getElementById("my_img").style.height = "500px";
+                document.getElementById("demo").style.fontSize = "100px";
+                function_count = 2;
+            }
+            else {
+                document.getElementById("my_img").style.width = "65px";
+                // document.getElementById("my_img").style.height = "auto";
+                document.getElementById("demo").style.fontSize = "10px";
+                function_count = 1;
+            }
+        }
+
+        var x = 65;
+        var y = 10;
+        function click_button() {
+            document.getElementById("my_img").style.width = `${x}px`;
+            document.getElementById("demo").style.fontSize = `${y}px`;
+            console.log(x, y);
+            x += 10;
+            y++;
+            y++;
+            // document.getElementById("my_img").style.height = "500px";
+            // document.getElementById("demo").style.fontSize = "100px";
+        }
+    </script>
+
+</body>
+
+</html>

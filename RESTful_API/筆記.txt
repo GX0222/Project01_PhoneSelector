@@ -1,0 +1,8 @@
+伺服器：
+npm install express
+npm install body-parser
+npm install express-session
+npm install ejs
+npm install mysql
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>

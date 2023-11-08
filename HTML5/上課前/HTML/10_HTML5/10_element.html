@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+
+    <!-- 10. 開始標籤到結束標籤 -> 元素 -->
+
+    <h1>Hello World</h1>
+
+    <!-- 20. 元素的屬性 -->
+
+    <h1 id="content">Hello World</h1>
+
+    <!-- id 的屬性值:
+        1. 有區分大小寫
+        2. 至少包含一個字元
+        3. 不能以數字開頭
+        4. 不能包含空格 -->
+
+
+    <!-- 21. 不同元素可能有不同屬性。 ex: <a> -->
+        <a href="https://google.com">google首頁</a>
+        
+        
+        <!-- 22. 元素可以有多個屬性。(用空白隔開，不可同時有多個相同屬性) ex: <a> -->
+        <a href="https://google.com" id="google">google首頁2</a>
+        
+        
+        <!-- 試試看，
+            元素使用不支援的屬性，是否能達到效果? -->
+        <h2 href="https://google">google首頁3</h2>
+
+
+    <!-- 23. JS相關屬性 -->
+    <!-- 事件屬性 -->
+    <button onclick="ShowMsg()">Click</button>
+
+    <!-- fuction 函式名稱() { 要做的事 } -->
+
+    <script>
+        function ShowMsg() {
+            alert("Hello");
+        }
+    </script>
+
+</body>
+
+</html>

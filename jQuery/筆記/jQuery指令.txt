@@ -1,0 +1,80 @@
+以ID呼叫元素：
+    $("#ID").
+
+呼叫元素之下的元素，加「空格」
+    ex：$("#ID li")
+
+換文字：
+    $().text("文字");
+
+加文字：
+    $().append("內容文字");
+
+創建元素：
+    $("目標元素").append("html");
+    $("html").appendTo("目標元素");
+    ex1：$("#ID").append(`<h1>你好</h1>`);
+    ex2：$(`<h1>你好</h1>`).append("#ID");
+
+讀出元素值：
+    $().prop("元素");
+    ex：$().prop("value");          // 讀出文字
+
+變更元素屬性：
+    $().prop("屬性", "值");
+    ex：$("#ID").prop("color", "pink");
+    變更多項：$("#ID").prop("color:pink", "background-color:black");
+
+迴圈：
+    $.each( 目標元素 , function( index , 物件 ) {
+        要做的內容
+    })
+
+清空：
+    $("list").empty();
+
+移除：
+    $("list li").remove();        // 不會保留綁定事件
+    $("list li").detach();        // 會保留綁定事件
+
+點兩下：
+    $().on("dblclick",function(){
+        要做的事
+    })
+
+    $().dblclick(function(){
+        要做的事
+    })
+
+==========================================================================================
+Server：
+    npm install cors
+    npm install express
+    npm install body-parser
+
+
+
+==========================================================================================
+ServeB:
+
+
+npm install
+
+
+node appB.js
+
+
+http://localhost:5000/getData
+
+-------------------
+
+Server A (Front end):
+
+
+npm install
+
+
+node app.js
+
+
+http://localhost:3000/index.html

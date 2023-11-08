@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript">
+
+        function console(obj) {
+            $("#report").append(obj + "<br>");
+        }
+
+        $(document).ready(function () {
+            // 在這裏寫程式
+
+            // $("#btnTry").click(function () {
+            //     alert("test 1");
+            // });
+            // $("#btnTry").on("click", function () {
+            //     alert("test 2");
+            // });
+            // $("#btnTry").on({
+            //     "click": function () {
+            //         alert("test 2")
+            //     },
+            //     "mouseleave":function(){
+            //         alert("test3")
+            //     }
+            // });
+
+            $(panda).mouseleave(function () {
+                $(panda).prop("src", "panda1.jpg");
+            })
+            $(panda).mouseover(function () {
+                $(panda).prop("src", "panda2.jpg");
+            })
+
+            $(btnOff).click(function () {
+                $(panda).off("mouseover");        // 不可用.on()回復
+            });
+
+            $(btnRe).click(function () {
+                $(panda).mouseover(function () {
+                    $(panda).prop("src", "panda2.jpg");
+                });
+            });
+
+        });
+    </script>
+</head>
+
+<body>
+
+    <img id="panda" src="panda1.jpg">
+
+    <div id="report">Report:<br></div>
+    <hr>
+    <form action="" method="put" onsubmit="return false;">
+        <button type="button" id="btnTry">Try</button>
+        <button type="button" id="btnOff">Off</button>
+        <button type="button" id="btnRe">Re</button>
+    </form>
+</body>
+
+</html>

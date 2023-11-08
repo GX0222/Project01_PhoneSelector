@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        /* 10. 改變滑鼠經過 radio 的樣式 */
+        input[type="radio"] {
+            cursor: pointer;
+        }
+
+        /* 20. :valid 驗證通過時的樣式設定 */
+        input[type="email"]:valid,input[type="text"]:valid {
+            background-color: aquamarine;
+        }
+
+        /* 21. :invalid 驗證不通過時的樣式設定 */
+        input[type="email"]:invalid,input[type="text"]:invalid {
+            background-color: violet;
+        }
+
+    </style>
+</head>
+
+<body>
+    <p><a href="https://www.w3schools.com/cssref/trysel.asp">Try CSS Selector</a></p>
+    <p><a href="https://caniuse.com/">Can I use..</a></p>
+    <p><a href="https://flukeout.github.io/">CSS Diner (選擇器的小遊戲)</a></p>
+    <hr>
+    <form>
+        <!-- 照上方CSS設定 -->
+        <!-- 10. 產生 單選按鈕元素 -->
+        <input type="radio">
+
+        <!-- 20. 產生 可以輸入 email 的方框 以及 -->
+        <!--     產生 可以輸入 文字  的方框，並限制只能輸入大小寫英文 以及 -->
+        <!--     產生 可以輸入 文字  的方框，並限制輸入身分證字號格式 -->
+        <br>
+        email : <input type="email" required>
+        <br><br>
+        text : <input type="text" pattern="[A-Za-z]{0,3}">
+                                <!-- 只能大小寫英文，以及0~3個字 -->
+        <br><br>
+        ID : <input type="text" pattern="[A-Z]{1}[0-9]{9}">
+                                <!-- pattern後條件跟條件之間不需要"，"和" " -->
+
+    </form>
+</body>
+
+</html>

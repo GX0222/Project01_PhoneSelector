@@ -1,0 +1,91 @@
+左上:
+
+start transaction;
+
+update products set unitsInStock = 100 where productId = 1;
+ 
+右下:
+
+C:\MAMP\bin\mysql\bin\mysql -uroot -p
+
+use northwind;
+
+set session transaction isolation level read committed;
+
+select productId, unitsInStock from products where productId = 1;
+ 
+set session transaction isolation level read uncommitted;
+
+select productId, unitsInStock from products where productId = 1;
+ 
+左上:
+
+rollback;
+
+select productId, unitsInStock from products where productId = 1;
+
+
+=======================================================================
+
+ 
+左上:
+
+start transaction;
+
+select productId, unitsInStock from products where productId = 1 for update;
+ 
+右下:
+
+start transaction;
+
+select productId, unitsInStock from products where productId = 1 for update;
+ 
+左上:
+
+update products set unitsInStock = 38 where productId = 1;
+
+commit;
+ 
+右下:
+
+update products set unitsInStock = 37 where productId = 1;
+
+commit;
+ 
+ 
+=====================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

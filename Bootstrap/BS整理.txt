@@ -1,0 +1,23 @@
+.container
+.container-{斷點 | fluid}
+
+.row
+.col
+.col-{數字 1~12}
+.col-{斷點}-{數字}
+
+.h{數字 1~6}
+.display-{數字 1~6}
+.fs-{數字 1~6}
+
+.table-{顏色}
+.text-{顏色}
+.bg-{顏色}
+.text-bg-{顏色}
+
+.text-{start|end|center}
+.text-斷點-{start|end|center}
+
+.{w|h}-{25|50|75|100|auto}
+.{p|m}{s|e|t|b|x|y|不帶值}-{數字 1~6}
+.{p|m}{s|e|t|b|x|y|不帶值}-{斷點}-{數字 1~6}

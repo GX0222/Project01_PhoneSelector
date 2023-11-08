@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../_css/bootstrap.css">
+    <script src="../_js/bootstrap.bundle.js"></script>
+    <style>
+        div[class^="col"]:nth-child(odd) {
+            background-color: yellowgreen;
+        }
+
+        div[class^="col"]:nth-child(even) {
+            background-color: palevioletred;
+        }
+
+        div[class^="col-4"] {
+            height: 100px;
+            padding: 0px;
+        }
+
+        div.div2 {
+            background-color: aliceblue;
+            height: 95%;
+            width: 95%;
+            margin-top: 5px;
+            margin-left: 5px;
+            /* padding: 5px; */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="row" style="background-color: black;padding: 0px;">
+        <div class="col-9 row" style="background-color: blue;padding-left: 30px;">
+            <div class="col-4">
+                <div class="div2">1</div>
+            </div>
+            <div class="col-4">
+                <div class="div2">2</div>
+            </div>
+            <div class="col-4">
+                <div class="div2">3</div>
+            </div>
+            <div class="col-4">
+                <div class="div2">4</div>
+            </div>
+            <div class="col-4">
+                <div class="div2">5</div>
+            </div>
+            <div class="col-4">
+                <div class="div2">6</div>
+            </div>
+        </div>
+        <div class="col-3" style="margin: 5px;">7</div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        /* exmaple 01. */
+        /* #div_A {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            animation-name: example;
+            animation-duration: 5s;
+        } */
+
+        @keyframes example {
+            from { background-color: blue; }
+            to   { background-color: yellow; }
+        }
+
+        /* example 02. */
+        #div_B {
+            width: 1000px;
+            height: 1000px;
+            background-color: red;
+            animation-name: ex;
+            animation-duration: 20s;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes ex {
+            0% {background-color: red;}
+            25% {background-color: yellow;}
+            50% {background-color: argb(0,255,255);}
+            75% {background-color: blue;}
+            100% {background-color: red;}
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <div id="div_A"></div>
+    <div id="div_B"></div>
+</body>
+
+</html>

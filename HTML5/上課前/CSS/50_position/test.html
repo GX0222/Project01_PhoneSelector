@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /* .mydiv {
+            position: relative;
+            padding: 5px;
+        }
+        .mydiv2 {
+            position: absolute;
+            top: 70%;
+            width: 100%;
+            font-size: 45px;
+            background-color:rgba(255, 255, 255, 0.5);
+            visibility: hidden;
+        }
+        .mydiv:hover {
+            .mydiv2 { visibility: visible;}  
+        } */
+
+        img {
+            width: 100%;
+        }
+
+        figure {
+            position: relative;
+        }
+
+        figcaption {
+            background-color: rgba(255, 255, 255, 0.5);
+            height: 20%;
+            width: 100%;
+            font-size: 30px;
+            position: absolute;
+            bottom: 15%;
+            padding: 5px;
+            box-sizing: border-box;
+            visibility: hidden;
+        }
+
+        figure:hover>figcaption {
+            visibility: visible;
+        }
+
+    </style>
+
+</head>
+<body style="background-color: black;">
+    <!-- <div class="mydiv">
+        <img src="../img/sunny.jpg" style="width: 100%;">
+        <div class="mydiv2">
+            <div style="padding: 0 0 0 5%;">千陽號海上行</div>
+        </div>
+    </div> -->
+
+    <figure>
+        <img src="../img/sunny.jpg">
+        <figcaption>千陽號海上行</figcaption>
+    </figure>
+
+</body>
+</html>
