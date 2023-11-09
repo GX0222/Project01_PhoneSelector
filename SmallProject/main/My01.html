@@ -48,6 +48,10 @@
         ul.ch_ul {
             list-style: none;
         }
+
+        span.select_title {
+            font-size: larger;
+        }
     </style>
 </head>
 
@@ -103,7 +107,7 @@
         <div id="ch_op" class="pt-5">
 
             <ul class="ch_ul ps-3">
-                <span>品牌</span>
+                <span class="select_title">品牌</span>
                 <li>
                     <input id="ch_Apple" type="checkbox" class="form-check-input">
                     <label class="form-check-label" for="ch_Apple">&nbsp;Apple</label>
@@ -142,7 +146,7 @@
                 </li>
             </ul>
             <ul class="ch_ul ps-3">
-                <span>螢幕大小</span>
+                <span class="select_title">螢幕尺寸</span>
                 <li>
                     <input id="ch_Apple" type="checkbox" class="form-check-input">
                     <label class="form-check-label" for="ch_Apple">&nbsp;Apple</label>
@@ -181,7 +185,7 @@
                 </li>
             </ul>
             <ul class="ch_ul ps-3">
-                <span>CPU</span>
+                <span class="select_title">處理器</span>
                 <li>
                     <input id="ch_Apple" type="checkbox" class="form-check-input">
                     <label class="form-check-label" for="ch_Apple">&nbsp;Apple</label>
@@ -225,9 +229,9 @@
         <!-- ========== 選擇列 end ========== -->
 
 
-        <!-- ========== 手機展示塊 start ========== -->
+        <!-- ========== 手機塊 start ========== -->
         <div id="div_phone_bg" style="border: solid;" class="container">
-            
+
         </div>
         <!-- ========== 手機展示塊 end ========== -->
 
@@ -250,12 +254,22 @@
         //     phone_div_creat(i);
         // }
 
-        $.get('/mydata/phlist', function (req_ph_list) {
-            for (let i = 0; i +1<= req_ph_list.length; i++) {
-                // console.log(req_ph_list[i]);
-                phone_div_creat(req_ph_list[i]);
-            }
+        var ch_brand_array = [];
+        function get_data() {
+            $.get('/mydata/phlist', function (req_ph_list) {
+                for (let i = 0; i + 1 <= req_ph_list.length; i++) {
+                    // console.log(req_ph_list[i]);
+                    phone_div_creat(req_ph_list[i]);
+                    phone_ch_div_ceat(i, req_ph_list[i]);
+                }
+            })
+        }
 
+
+
+        $(document).ready(function () {
+            get_data()
+            console.log(ch_brand_array[2]);
         })
         // ========== 創建手機塊 end ========== //
 
@@ -323,8 +337,38 @@
         // ========== toast end ========== //
 
 
+        // ========== 創建選擇列 Function Start ========== //
 
-        
+
+
+
+        // ========== 創建選擇列 Function End ========== //
+
+
+
+
+        function phone_ch_div_ceat(i, idata) {
+            ch_brand_array[i] = idata.ph_brand;
+        }
+        console.log(ch_brand_array[2]);
+
+        var ch_title = [];
+        for (var i = 0; i < ch_brand_array.length; i++) {
+            if (ch_title.indexOf(ch_brand_array[i]) === -1) {
+                ch_title.push(ch_brand_array[i]);
+            }
+        }
+
+        console.log(ch_title);
+
+
+
+
+
+
+
+
+
 
         // ========== 創建手機塊 Function start ========== //
         function phone_div_creat(x) {

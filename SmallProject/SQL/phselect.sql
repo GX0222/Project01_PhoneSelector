@@ -1,0 +1,23 @@
+CREATE table `ph_select`(
+    ph_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    ph_name	varchar(25),
+    ph_brand varchar(20),
+    ph_cpu varchar(15),
+    scr_size	decimal(3,1),
+    scr_panel varchar(10),
+    scr_refresh smallint(4),
+    scr_resolution varchar(15),
+    ph_ram smallint(4),
+    ph_rom smallint(4),
+    ph_weight smallint(4),
+    ph_rwdr varchar(5),
+    ph_wifi varchar(15),
+    ph_5g char(1),
+    ph_port varchar(20),
+    ph_bat smallint(5),
+    ph_wchar varchar(15),
+    ph_sd char(1),
+    ph_dsim varchar(20),
+    ph_35 char(1),
+    ph_url varchar(255)
+)
