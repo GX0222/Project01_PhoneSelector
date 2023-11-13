@@ -34,11 +34,13 @@
             padding-bottom: 2px;
             padding-left: auto;
             padding-right: auto;
+            width: 100%;
             /* text-align:center; */
         }
 
         div#ch_op {
             width: 200px;
+            min-width: 200px;
             background-color: blueviolet;
             /* text-align: center; */
             color: aliceblue;
@@ -131,10 +133,10 @@
             $.get('/mydata/phlist', function (req_ph_list) {
                 for (var i = 0; i < req_ph_list.length; i++) {
                     phone_ch_div_ceat("品牌", "ph_brand", req_ph_list[i].ph_brand, req_ph_list[i].ph_brand, i, req_ph_list.length);
-                    phone_ch_div_ceat("處理器", "ph_cpu", req_ph_list[i].ph_cpu_id, req_ph_list[i].ph_cpu, i, req_ph_list.length);
-                    phone_ch_div_ceat("螢幕尺寸", "scr_size", req_ph_list[i].scr_size, req_ph_list[i].scr_size + " 吋", i, req_ph_list.length);
+                    phone_ch_div_ceat("處理器", "ph_cpu_id", req_ph_list[i].ph_cpu_id, req_ph_list[i].ph_cpu, i, req_ph_list.length);
+                    phone_ch_div_ceat("螢幕尺寸", "scr_size_id", req_ph_list[i].scr_size_id, req_ph_list[i].scr_size, i, req_ph_list.length);
                     phone_ch_div_ceat("螢幕更新率", "scr_refresh", req_ph_list[i].scr_refresh, req_ph_list[i].scr_refresh + " hz", i, req_ph_list.length);
-                    phone_ch_div_ceat("Wifi", "ph_wifi", req_ph_list[i].ph_wifi_id, req_ph_list[i].ph_wifi, i, req_ph_list.length);
+                    phone_ch_div_ceat("Wifi", "ph_wifi_id", req_ph_list[i].ph_wifi_id, req_ph_list[i].ph_wifi, i, req_ph_list.length);
                     phone_ch_div_ceat("傳輸接口", "ph_port_id", req_ph_list[i].ph_port_id, req_ph_list[i].ph_port, i, req_ph_list.length);
                     phone_div_creat(req_ph_list[i], i);
                 }
@@ -255,47 +257,131 @@
         $(document).ready(function () {
             console.log("Document ready!");
         });
-        var select_key_array = [];
-        var select_value_array = [];
+
         var select_JSON = [];
-        function ch_click(ch_id, select_key, select_value) {
-            $(`#${ch_id}`).on("click", function () {
-                var elementID = $(this).prop("id");
-                var click_JSON={
-                    "skey" : select_key,
-                    "svalue" : select_value
-                }
+        var select_key_array = [];
+        console.log("var");
+        function ch_click(ch_id, select_key, select_value) {        // 判斷選擇那些選項
+            $(`#${ch_id}`).on("click", function () {                // 合併成JSON資料
                 if (this.checked) {
-                    select_value_array.push(select_value);
-                    console.log(select_value_array);
-                    select_key_array.push(select_key);
-                    console.log(select_key_array);
-                    select_JSON.push(click_JSON);
-                    console.log(select_JSON);
-                    get_select_data(select_key_array, select_value_array);
+                    if (select_JSON == 0) {                         // 第一次選擇
+                        var click_JSON = {};
+                        click_JSON[select_key] = select_value;
+                        // var click_JSON = {
+                        //     "skey1": select_key,
+                        //     "svalue1": select_value
+                        // }
+                        select_JSON.push(click_JSON);
+                        select_key_array.push(select_key);
+                        console.log(select_JSON);
+                    }
+                    else if ($.inArray(select_key, select_key_array) >= 0) {        // or
+                        // var keys = findKeyByValue(select_JSON[0], select_key);
+                        // var x_str = keys.replace("skey", "");
+                        // var svaluex = `svalue${x_str}`;
+                        var click_JSON = [];
+                        click_JSON.push($.extend({}, select_JSON[0]));
+                        click_JSON[0][select_key] = select_value;
+                        select_JSON.push($.extend({}, click_JSON[0]));
+                    }
+                    else {                                                          // and
+                        console.log("else");
+
+                    }
+                    // console.log(select_JSON);
+                    get_select_data(select_JSON);
 
                 } else {
-                    select_value_array = select_value_array.filter(function (item) {
-                        return item !== select_value;
+
+                    select_JSON = select_JSON.filter(function (item) {
+                        if (item.skey1 == click_JSON.skey1 && item.svalue1 == click_JSON.svalue1) {
+                            return false;
+                        }
+                        else {
+                            return true;
+                        }
                     });
-                    console.log(select_value_array);
-                    get_select_data(select_key_array, select_value_array);
+                    // console.log(select_JSON);
+                    // get_select_data(select_JSON);
                 }
             })
         }
 
-        function get_select_data(select_key_array, select_value_array) {
+
+        function select_JSON_data(req_server_JSON, req_select_JSON) {
+
+            var key = [];
+            console.log(req_select_JSON);
+            key = Object.keys(req_select_JSON[0]);
+            console.log(key);
+            for (let i = 0; i < key.length; i++) {
+                if (req_server_JSON[key[i]] != req_select_JSON[key[i]]) {
+                    console.log(req_server_JSON[key[i]]);
+                    console.log(req_select_JSON[0][key[i]]);
+                    console.log(key[i]);
+                    console.log("false");
+                    return false;
+                }
+            }
+
+            // for (var key in req_select_JSON) {
+            //     if (req_server_JSON[key] !== req_select_JSON[key]) {
+            //         console.log(req_server_JSON.key);
+            //         console.log(req_select_JSON[key]);
+            //         console.log(key);
+            //         console.log("false");
+            //         return false;
+            //     }
+            // }
+            console.log("true");
+            return true;
+        }
+
+
+        function findKeyByValue(req_JSON, valueToFind) {
+            var found_key = null;
+            $.each(req_JSON, function (key, value) {
+                console.log(key, value);
+                console.log(valueToFind, valueToFind);
+                if (value == valueToFind) {
+                    found_key = key;
+                    return false;
+                }
+            })
+            return found_key;
+        }
+
+
+
+
+        function get_select_data(select_JSON) {
             $("#div_phone_bg").empty();
-            if (select_value_array.length == 0) {
+            if (select_JSON == 0) {
                 console.log(0);
                 $.get('/mydata/phlist', function (req_ph_list) {
                     for (var i = 0; i < req_ph_list.length; i++) {
-                        phone_div_creat(req_ph_list[i], i,);
+                        phone_div_creat(req_ph_list[i], i);
                     }
                 })
             }
             else {
-                console.log(1);
+                console.log(select_JSON);
+                var index = 0;
+                $.get('/mydata/phlist', function (req_ph_list) {
+                    for (var i = 0; i < req_ph_list.length; i++) {
+                        if (select_JSON_data(req_ph_list[i], select_JSON)) {
+                            console.log("call creat");
+                            phone_div_creat(req_ph_list[i], index);
+                            index++;
+                        }
+                        // for (var ii = 0; ii < select_JSON.length; ii++) {
+                        //     if (req_ph_list[i][select_JSON[ii].skey1] == select_JSON[ii].svalue1) {
+                        //         phone_div_creat(req_ph_list[i], index);
+                        //         index++;
+                        //     }
+                        // }
+                    }
+                })
             }
 
         }
@@ -305,17 +391,22 @@
 
 
 
+
+
+
+
         // ========== 創建手機塊 Function start ========== //      創建DIV ID="div_phone_${x.ph_id}"
         function phone_div_creat(x, i, select_item = "nodata", select_type = "nodata") {
-            if (select_item != "nodata") {                                                  // 檢查是否有選擇條件
-                let x_str = JSON.stringify(x);
-                let select_item_JSON = x.find(function (item) {
-                    return item.select_type === select_item;
-                });
-                let select_item_str = JSON.stringify();
-            }
+            // if (select_item != "nodata") {                                                  // 檢查是否有選擇條件
+            //     let x_str = JSON.stringify(x);
+            //     let select_item_JSON = x.find(function (item) {
+            //         return item.select_type === select_item;
+            //     });
+            //     let select_item_str = JSON.stringify();
+            // }
             let y = Math.floor(i / 4);
             if (i % 4 == 0) {
+
                 $("#div_phone_bg").append(
                     `<div class="d-xl-flex">
                         <div class="d-md-flex w-100  pe-md-3  pb-md-0 me-xl-3 pb-xl-0 div_phone_bg${y}_1">
