@@ -25,7 +25,7 @@
         "ph_dsim" : "nano-SIM+eSIM",
         "ph_35" : "N",
         "ph_url" : "https://www.apple.com/tw/iphone-15/specs/",
-        "ph_img" : ""
+        "ph_img" : "./img/iphone_15_01.jpg"
     },
     {
         "ph_id" : 2,
@@ -53,7 +53,7 @@
         "ph_dsim" : "nano-SIM+eSIM",
         "ph_35" : "N",
         "ph_url" : "https://www.apple.com/tw/iphone-15/specs/",
-        "ph_img" : ""
+        "ph_img" : "./img/iphone_15_Plus_01.jpg"
     },
     {
         "ph_id" : 3,
@@ -81,7 +81,7 @@
         "ph_dsim" : "nano-SIM+eSIM",
         "ph_35" : "N",
         "ph_url" : "https://www.apple.com/tw/iphone-15-pro/specs/",
-        "ph_img" : ""
+        "ph_img" : "./img/iphone_15_pro_01.jpg"
     },
     {
         "ph_id" : 4,
@@ -109,7 +109,7 @@
         "ph_dsim" : "nano-SIM+eSIM",
         "ph_35" : "N",
         "ph_url" : "https://www.apple.com/tw/iphone-15-pro/specs/",
-        "ph_img" : ""
+        "ph_img" : "./img/iphone_15_pro_max_01.jpg"
     },
     {
         "ph_id" : 5,
@@ -137,7 +137,7 @@
         "ph_dsim" : "雙nano-SIM",
         "ph_35" : "Y",
         "ph_url" : "https://www.sony.com.tw/zh/smartphones/products/xperia-1m5/spec",
-        "ph_img" : ""
+        "ph_img" : "./img/sony_xperia_1v_01.jpg"
     },
     {
         "ph_id" : 6,
@@ -165,7 +165,7 @@
         "ph_dsim" : "雙nano-SIM",
         "ph_35" : "Y",
         "ph_url" : "https://www.sony.com.tw/zh/smartphones/products/xperia-5m5/spec",
-        "ph_img" : ""
+        "ph_img" : "./img/sony_xperia_5v_01.jpg"
     },
     {
         "ph_id" : 7,
@@ -193,6 +193,6 @@
         "ph_dsim" : "雙nano-SIM",
         "ph_35" : "Y",
         "ph_url" : "https://www.sony.com.tw/zh/smartphones/products/xperia-10m5/spec",
-        "ph_img" : ""
+        "ph_img" : "./img/sony_xperia_10v_01.jpg"
     }  
 ]

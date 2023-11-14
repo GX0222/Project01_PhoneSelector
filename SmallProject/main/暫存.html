@@ -25,28 +25,28 @@
 
 <!-- phone_list 規格 -->
 {
-    "ph_id" : ,
-    "ph_name" : "",
-    "ph_brand" : "",
-    "ph_cpu" : "",
-    "scr_size" : ,
-    "scr_panel" : "",
-    "scr_refresh" : ,
-    "scr_resolution" : "",
-    "ph_ram" : ,
-    "ph_rom" : "",
-    "ph_weight" : ,
-    "ph_rwdr" : "",
-    "ph_wifi" : "",
-    "ph_5g" : "",
-    "ph_port" : "",
-    "ph_bat" : ,
-    "ph_wirelesschar" : "",
-    "ph_sd" : "",
-    "ph_dsim" : "",
-    "ph_35" : "",
-    "ph_url" : "",
-    "ph_img" : ""
+"ph_id" : ,
+"ph_name" : "",
+"ph_brand" : "",
+"ph_cpu" : "",
+"scr_size" : ,
+"scr_panel" : "",
+"scr_refresh" : ,
+"scr_resolution" : "",
+"ph_ram" : ,
+"ph_rom" : "",
+"ph_weight" : ,
+"ph_rwdr" : "",
+"ph_wifi" : "",
+"ph_5g" : "",
+"ph_port" : "",
+"ph_bat" : ,
+"ph_wirelesschar" : "",
+"ph_sd" : "",
+"ph_dsim" : "",
+"ph_35" : "",
+"ph_url" : "",
+"ph_img" : ""
 },
 <!-- phone_list 規格 -->
 
@@ -66,3 +66,44 @@
 </ul>
 
 <!--  -->
+
+
+
+
+<img src="${x.ph_img}" alt="還未設定圖片" class="div_phone_img">
+
+<div style="height: 200px;">
+    <div style="max-height: 50;">
+
+    </div>
+    <div class="3">
+
+    </div>
+</div>
+
+
+
+<ul>
+    <li class="div_phone_text_li_title">
+        <p>${x.ph_name}</p>
+    </li>
+    <li>
+        <p>處理器：${x.ph_cpu}</p>
+    </li>
+</ul>
+
+<div id="div_phone_${x.ph_id}" class="div_phone col-md-6 mb-3 me-md-3 mt-md-0">
+    <div class="div_phone_img_container">
+        <img src="${x.ph_img}" alt="還未設定圖片" class="div_phone_img">
+    </div>
+    <div class="div_phone_text">
+        <ul>
+            <li class="div_phone_text_li_title">
+                <p>${x.ph_name}</p>
+            </li>
+            <li>
+                <p>處理器：${x.ph_cpu}</p>
+            </li>
+        </ul>
+    </div>
+</div>

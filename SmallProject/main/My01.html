@@ -18,15 +18,13 @@
             color: lightseagreen !important;
         }
 
-        div.div_phone {
-            margin: 2px;
-            margin-right: 0px;
-            margin-left: 0px;
-            border: solid;
-            height: 450px;
-            /* width: auto; */
-            /* width: 225px; */
-            /* display: inline-block; */
+        div.select_phone_div {
+            height: 200px;
+            margin: 5px;
+            margin-top: 60px;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
         }
 
         div#div_phone_bg {
@@ -38,17 +36,73 @@
             /* text-align:center; */
         }
 
+        div.div_phone {
+            margin: 2px;
+            margin-right: 0px;
+            margin-left: 0px;
+            padding: 5px;
+            border: solid;
+            height: 450px;
+            display: flex;
+            flex-direction: column;
+            border-radius: 10px;
+            border-color: rgba(200, 200, 200, 0.8);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        div.div_phone_img_container {
+            max-height: 40%;
+            max-width: 100%;
+            overflow: hidden;
+            /* border: 1px solid lightseagreen;
+            border-radius: 10px; */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* padding: 5px; */
+        }
+
+        img.div_phone_img {
+            max-width: 100%;
+            height: 100%;
+            /* border: 1px solid; */
+            object-fit: contain;
+            /* border-radius: 10px; */
+            /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); */
+        }
+
+        div.div_phone_text {
+            margin: 0px;
+            padding: 10px;
+            flex-grow: 1;
+            border-radius: 10px;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
         div#ch_op {
             width: 200px;
             min-width: 200px;
-            background-color: blueviolet;
+            /* background-color: blueviolet; */
             /* text-align: center; */
-            color: aliceblue;
+            /* color: aliceblue; */
             font-size: medium;
         }
 
         ul.ch_ul {
             list-style: none;
+        }
+
+        input.ch_checkbox {
+            border-color: rgba(0, 0, 0, 0.45);
+            border-width: 1.5px;
+        }
+
+        input.ch_checkbox:checked {
+            background-color: lightseagreen;
+        }
+
+        .ch_checkbox:checked+.form-check-label {
+            color: lightseagreen;
         }
 
         span.select_title {
@@ -92,7 +146,7 @@
 
 
     <!-- ========== 背景 start ========== -->
-    <div id="bg_div_top" class="bg-info" style="height: 200px; padding-top: 55px;">
+    <div id="bg_div_top" class="select_phone_div">
         test
     </div>
     <!-- ========== 背景 end ========== -->
@@ -103,13 +157,12 @@
 
         <!-- ========== 選擇列 start ========== -->
         <div id="ch_op" class="pt-5">
-
         </div>
         <!-- ========== 選擇列 end ========== -->
 
 
         <!-- ========== 手機塊 start ========== -->
-        <div id="div_phone_bg" style="border: solid;" class="container">
+        <div id="div_phone_bg" class="container">
 
         </div>
         <!-- ========== 手機展示塊 end ========== -->
@@ -225,7 +278,7 @@
                     `<ul class="ch_ul ps-3 ch_creat_ul_${title_name}">
                     <span class="select_title ch_creat_title_${title_name}">${title_name}</span>
                     <li>
-                        <input id="ch_${creat_value_for_id}" type="checkbox" class="form-check-input">
+                        <input id="ch_${creat_value_for_id}" type="checkbox" class="form-check-input ch_checkbox">
                             <label class="form-check-label" for="ch_${creat_value_for_id}">&nbsp;${show_name}</label>
                     </li>
                 </ul>`
@@ -235,7 +288,7 @@
             else if (old_length == ch_brand_array.length) {
                 $(`ul.ch_creat_ul_${title_name}`).append(
                     `<li>
-                        <input id="ch_${creat_value_for_id}" type="checkbox" class="form-check-input">
+                        <input id="ch_${creat_value_for_id}" type="checkbox" class="form-check-input ch_checkbox">
                             <label class="form-check-label" for="ch_${creat_value_for_id}">&nbsp;${show_name}</label>
                     </li>
                 </ul>`
@@ -267,82 +320,77 @@
                     if (select_JSON == 0) {                         // 第一次選擇
                         var click_JSON = {};
                         click_JSON[select_key] = select_value;
-                        // var click_JSON = {
-                        //     "skey1": select_key,
-                        //     "svalue1": select_value
-                        // }
                         select_JSON.push(click_JSON);
                         select_key_array.push(select_key);
-                        console.log(select_JSON);
                     }
-                    else if ($.inArray(select_key, select_key_array) >= 0) {        // or
-                        // var keys = findKeyByValue(select_JSON[0], select_key);
-                        // var x_str = keys.replace("skey", "");
-                        // var svaluex = `svalue${x_str}`;
-                        var click_JSON = [];
-                        click_JSON.push($.extend({}, select_JSON[0]));
-                        click_JSON[0][select_key] = select_value;
-                        select_JSON.push($.extend({}, click_JSON[0]));
+                    else if ($.inArray(select_key, select_key_array) >= 0) {        // or 條件選擇過
+                        var select_JSON_length = select_JSON.length;
+                        for (var i = 0; i < select_JSON_length; i++) {              // 複製條件並修改在加回去
+                            var click_JSON = $.extend({}, select_JSON[i]);
+                            click_JSON[select_key] = select_value;
+                            select_JSON.push(click_JSON);
+                        }
+                        select_JSON = JSON_del_same(select_JSON);                   // 刪除一樣的條件
                     }
-                    else {                                                          // and
+                    else {                                                          // and 條件沒有選擇過
                         console.log("else");
-
+                        for (var i = 0; i < select_JSON.length; i++) {
+                            select_JSON[i][select_key] = select_value;
+                        }
+                        select_key_array.push(select_key);
                     }
-                    // console.log(select_JSON);
+                    console.log(select_JSON);
                     get_select_data(select_JSON);
 
                 } else {
-
-                    select_JSON = select_JSON.filter(function (item) {
-                        if (item.skey1 == click_JSON.skey1 && item.svalue1 == click_JSON.svalue1) {
-                            return false;
+                    if (find_diff_value_quantity(select_JSON, select_key) == 1) {    // 若是該類別唯一條件
+                        for (var i = 0; i < select_JSON.length; i++) {
+                            delete select_JSON[i][select_key];
                         }
-                        else {
-                            return true;
-                        }
-                    });
-                    // console.log(select_JSON);
-                    // get_select_data(select_JSON);
+                        select_JSON = JSON_del_same(select_JSON);
+                        select_key_array = select_key_array.filter(function (data) {
+                            return data != select_key;
+                        })
+                    }
+                    else {                                                           // 刪除含有此條件的條件組
+                        var new_select_JSON = select_JSON.filter(function (data) {
+                            return data[select_key] !== select_value;
+                        });
+                        select_JSON = new_select_JSON;
+                    }
+                    console.log(select_JSON);
+                    get_select_data(select_JSON);
                 }
             })
         }
 
 
         function select_JSON_data(req_server_JSON, req_select_JSON) {
-
             var key = [];
-            console.log(req_select_JSON);
-            key = Object.keys(req_select_JSON[0]);
-            console.log(key);
+            key = Object.keys(req_select_JSON);
             for (let i = 0; i < key.length; i++) {
                 if (req_server_JSON[key[i]] != req_select_JSON[key[i]]) {
-                    console.log(req_server_JSON[key[i]]);
-                    console.log(req_select_JSON[0][key[i]]);
-                    console.log(key[i]);
-                    console.log("false");
                     return false;
                 }
             }
-
-            // for (var key in req_select_JSON) {
-            //     if (req_server_JSON[key] !== req_select_JSON[key]) {
-            //         console.log(req_server_JSON.key);
-            //         console.log(req_select_JSON[key]);
-            //         console.log(key);
-            //         console.log("false");
-            //         return false;
-            //     }
-            // }
-            console.log("true");
             return true;
         }
+
+        function find_diff_value_quantity(req_JSON, req_key) {
+            var key_arr = [];
+            $.each(req_JSON, function (index, data) {
+                if ($.inArray(data[req_key], key_arr) === -1) {
+                    key_arr.push(data[req_key]);
+                }
+            })
+            return key_arr.length;
+        }
+
 
 
         function findKeyByValue(req_JSON, valueToFind) {
             var found_key = null;
             $.each(req_JSON, function (key, value) {
-                console.log(key, value);
-                console.log(valueToFind, valueToFind);
                 if (value == valueToFind) {
                     found_key = key;
                     return false;
@@ -351,13 +399,16 @@
             return found_key;
         }
 
+        function JSON_del_same(req_JSON) {
+            var JSON_Set = new Set(req_JSON.map(JSON.stringify));
+            var new_JSON = Array.from(JSON_Set).map(JSON.parse);
+            return new_JSON;
+        }
 
 
-
-        function get_select_data(select_JSON) {
+        function get_select_data(req_select_JSON) {
             $("#div_phone_bg").empty();
-            if (select_JSON == 0) {
-                console.log(0);
+            if (req_select_JSON == 0) {
                 $.get('/mydata/phlist', function (req_ph_list) {
                     for (var i = 0; i < req_ph_list.length; i++) {
                         phone_div_creat(req_ph_list[i], i);
@@ -365,21 +416,21 @@
                 })
             }
             else {
-                console.log(select_JSON);
                 var index = 0;
                 $.get('/mydata/phlist', function (req_ph_list) {
-                    for (var i = 0; i < req_ph_list.length; i++) {
-                        if (select_JSON_data(req_ph_list[i], select_JSON)) {
-                            console.log("call creat");
-                            phone_div_creat(req_ph_list[i], index);
-                            index++;
+                    var x = 0;
+                    var y = 0;
+                    for (var i2 = 0; i2 < req_select_JSON.length; i2++) {
+                        for (var i = 0; i < req_ph_list.length; i++) {
+                            if (select_JSON_data(req_ph_list[i], req_select_JSON[i2])) {
+                                x++;
+                                phone_div_creat(req_ph_list[i], index);
+                                index++;
+                            }
+                            else {
+                                y++;
+                            }
                         }
-                        // for (var ii = 0; ii < select_JSON.length; ii++) {
-                        //     if (req_ph_list[i][select_JSON[ii].skey1] == select_JSON[ii].svalue1) {
-                        //         phone_div_creat(req_ph_list[i], index);
-                        //         index++;
-                        //     }
-                        // }
                     }
                 })
             }
@@ -411,7 +462,19 @@
                     `<div class="d-xl-flex">
                         <div class="d-md-flex w-100  pe-md-3  pb-md-0 me-xl-3 pb-xl-0 div_phone_bg${y}_1">
                             <div id="div_phone_${x.ph_id}" class="div_phone col-md-6 mb-3 me-md-3 mt-md-0">
-                                <p>${x.ph_name}  ${i}</p> 
+                                <div class="div_phone_img_container">
+                                    <img src="${x.ph_img}" alt="還未設定圖片" class="div_phone_img">
+                                </div>
+                                <div class="div_phone_text">
+                                    <ul>
+                                        <li class="div_phone_text_li_title">
+                                            <p>${x.ph_name}</p>
+                                        </li>
+                                        <li>
+                                            <p>處理器：${x.ph_cpu}</p>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                         <div class="d-md-flex w-100 pe-md-3 pb-md-0 div_phone_bg${y}_2">
@@ -422,7 +485,19 @@
             else if (i % 4 == 1) {
                 $(`div.div_phone_bg${y}_1`).append(
                     `<div id="div_phone_${x.ph_id}" class="div_phone col-md-6 mb-3 me-md-3 mt-md-0">
-                        <p>${x.ph_name}   ${i}</p>
+                        <div class="div_phone_img_container">
+                            <img src="${x.ph_img}" alt="還未設定圖片" class="div_phone_img">
+                        </div>
+                        <div class="div_phone_text">
+                            <ul>
+                                <li class="div_phone_text_li_title">
+                                    <p>${x.ph_name}</p>
+                                </li>
+                                <li>
+                                    <p>處理器：${x.ph_cpu}</p>
+                                </li>
+                            </ul>
+                        </div>
                     </div>`
                 )
                 $(`div.div_phone_bg${y}_1`).removeClass(`div_phone_bg${y}_1`);
@@ -430,14 +505,38 @@
             else if (i % 4 == 2) {
                 $(`div.div_phone_bg${y}_2`).append(
                     `<div id="div_phone_${x.ph_id}" class="div_phone col-md-6 mb-3 me-md-3 mt-md-0">
-                        <p>${x.ph_name}  ${i}</p>
+                        <div class="div_phone_img_container">
+                            <img src="${x.ph_img}" alt="還未設定圖片" class="div_phone_img">
+                        </div>
+                        <div class="div_phone_text">
+                            <ul>
+                                <li class="div_phone_text_li_title">
+                                    <p>${x.ph_name}</p>
+                                </li>
+                                <li>
+                                    <p>處理器：${x.ph_cpu}</p>
+                                </li>
+                            </ul>
+                        </div>
                     </div>`
                 )
             }
             else if (i % 4 == 3) {
                 $(`div.div_phone_bg${y}_2`).append(
                     `<div id="div_phone_${x.ph_id}" class="div_phone col-md-6 mb-3 me-md-3 mt-md-0">
-                        <p>${x.ph_name}   ${i}</p>
+                        <div class="div_phone_img_container">
+                            <img src="${x.ph_img}" alt="還未設定圖片" class="div_phone_img">
+                        </div>
+                        <div class="div_phone_text">
+                            <ul>
+                                <li class="div_phone_text_li_title">
+                                    <p>${x.ph_name}</p>
+                                </li>
+                                <li>
+                                    <p>處理器：${x.ph_cpu}</p>
+                                </li>
+                            </ul>
+                        </div>
                     </div>`
                 )
                 $(`div.div_phone_bg${y}_2`).removeClass(`div_phone_bg${y}_2`)
