@@ -8,12 +8,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Perfect Scrollbar -->
+    <!-- <link rel="stylesheet" href="https://unpkg.com/perfect-scrollbar/css/perfect-scrollbar.css" /> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <!-- <script src="../Link/jquery-3.7.1.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.js"></script>
+    <!-- 引入 SimpleBar 的 CSS 文件 -->
+    <!-- 引入 SimpleBar 的 JavaScript 文件 -->
+    <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css" />
+    <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
+
     <style>
         li.nav-item>a.active {
             color: lightseagreen !important;
@@ -21,14 +27,21 @@
 
 
 
-        div.selected_phone_div {
+        div#selected_div_bg_bg {
             height: 200px;
             margin: 10px;
-            margin-top: 60px;
-            padding: 10px;
+            padding: 0px;
             border-radius: 10px;
-            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            white-space: nowrap;
+        }
+
+        div.selected_phone_div {
+            height: 200px;
+            margin: 0px;
+            padding: 10px;
             display: flex;
+            white-space: nowrap;
         }
 
         div.selected_phone_div>div {
@@ -38,7 +51,8 @@
             margin-right: 10px;
             padding: 5px;
             border-radius: 10px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            box-shadow: inset 0 0 5px rgba(32, 178, 171, 1);
+            flex-shrink: 0;
         }
 
         div.selected_phone_div>div>img {
@@ -180,8 +194,8 @@
         }
 
         div#ch_op {
-            width: 200px;
-            min-width: 200px;
+            width: 210px;
+            min-width: 210px;
             font-size: medium;
             padding: 0px;
             padding-top: 10px;
@@ -193,10 +207,21 @@
             margin-left: 10px;
             margin-right: 10px;
             padding-top: 10px;
+            padding-left: 0px;
             padding-bottom: 10px;
             list-style: none;
             border-bottom: 1.5px solid;
             border-color: rgba(32, 178, 171, 0.5);
+        }
+
+        ul.ch_ul>li {
+            padding-left: 0px;
+            margin-left: -10px;
+        }
+
+        ul.ch_ul>span {
+            padding-left: 0px;
+            margin-left: -10px;
         }
 
         input.ch_checkbox {
@@ -215,13 +240,17 @@
         span.select_title {
             font-size: larger;
         }
+
+        .simplebar-scrollbar::before {
+            background-color: lightseagreen;
+        }
     </style>
 </head>
 
 <body>
 
     <!-- ========== navbar start ========== -->
-    <nav class="navbar navbar-expand-lg bg-light w-100" style="position:fixed; top: 0px;">
+    <nav class="navbar navbar-expand-lg bg-light w-100" style=" top: 0px;">
         <div class="container-fluid">
             <a href="#" class="navbar-brand" style="margin-right: 100px;">Logo</a> <!-- Logo-->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar"
@@ -262,11 +291,14 @@
 
 
     <!-- ========== 選起來的 start ========== -->
-    <div id="selected_div_bg" class="selected_phone_div">
-        <!-- <div>
-            <img src="./img/iphone_15_01.jpg" alt="">
-            <p>No Data</p>
-        </div> -->
+    <div></div>
+    <div id="selected_div_bg_bg" data-simplebar>
+        <div id="selected_div_bg" class="selected_phone_div">
+            <!-- <div class="selected_img_div">
+                <img src="./img/iphone_15_01.jpg" alt="">
+                <p>No Data</p>
+            </div> -->
+        </div>
     </div>
     <!-- ========== 選起來的 end ========== -->
 
@@ -316,8 +348,79 @@
         }
         get_data();
 
+        // ========== 美化滾動列 Start ========== //
+        document.addEventListener('DOMContentLoaded', function () {
+            const simpleBar = new SimpleBar(document.querySelector('[data-simplebar]'));
+        });
+        // ========== 美化滾動列 End ========== //
+
         // ========== 創建區塊內容 end ========== //
 
+        // ========== 等待網頁載入 Start ========== //
+        $(document).ready(function () {
+            console.log("Document ready!");
+            // ========== 手機塊點擊 Function Start ========== //
+            var clicked_div_phone = [];
+            $(document).on('click', 'div.div_phone', function () {
+                console.log("clicked");
+                $(this).toggleClass('clicked');
+                var select_n = $(this).find('li.div_phone_text_li_title>p').text();
+                console.log(select_n);
+                if (clicked_div_phone.includes(select_n)) {
+                    console.log("已存在");
+                    clicked_div_phone = clicked_div_phone.filter(function (data) {
+                        return data !== select_n;
+                    })
+                    $("#selected_div_bg").empty();
+                    $.get('/mydata/phlist', function (req_ph_list) {
+                        for (var i = 0; i < req_ph_list.length; i++) {
+                            creat_selected_div(req_ph_list[i], clicked_div_phone);
+                        }
+                    })
+                }
+                else {
+                    clicked_div_phone.push(select_n);
+                    $("#selected_div_bg").empty();
+                    $.get('/mydata/phlist', function (req_ph_list) {
+                        for (var i = 0; i < req_ph_list.length; i++) {
+                            creat_selected_div(req_ph_list[i], clicked_div_phone);
+                        }
+                    })
+                }
+            });
+
+            $(document).on('click', 'div.div_phone_2', function () {
+                $(this).toggleClass('clicked');
+                var select_n = $(this).find('li.div_phone_text_li_title>p').text();
+                console.log(select_n);
+                if (clicked_div_phone.includes(select_n)) {
+                    console.log("已存在");
+                    clicked_div_phone = clicked_div_phone.filter(function (data) {
+                        return data !== select_n;
+                    })
+                    $("#selected_div_bg").empty();
+                    $.get('/mydata/phlist', function (req_ph_list) {
+                        for (var i = 0; i < req_ph_list.length; i++) {
+                            creat_selected_div(req_ph_list[i], clicked_div_phone);
+                        }
+                    })
+                }
+                else {
+                    clicked_div_phone.push(select_n);
+                    $("#selected_div_bg").empty();
+                    $.get('/mydata/phlist', function (req_ph_list) {
+                        for (var i = 0; i < req_ph_list.length; i++) {
+                            creat_selected_div(req_ph_list[i], clicked_div_phone);
+                        }
+                    })
+                }
+            });
+            // ========== 手機塊點擊 Function End ========== //
+
+
+
+        })
+        // ========== 等待網頁載入 End ========== //
 
 
         // ========== navitem 當前頁面醒目切換 start ========== //
@@ -382,6 +485,7 @@
 
 
 
+
         // ========== 創建選擇列 Function Start ========== //
         var ch_brand_array = [];
         function phone_ch_div_ceat(title_name, creat_key, creat_value_for_id, show_name, i, fun_end) {
@@ -426,68 +530,6 @@
 
 
 
-        $(document).ready(function () {
-            console.log("Document ready!");
-            // ========== 手機塊點擊 Function Start ========== //
-            var clicked_div_phone = [];
-            $(document).on('click', 'div.div_phone', function () {
-                console.log("clicked");
-                $(this).toggleClass('clicked');
-                var select_n = $(this).find('li.div_phone_text_li_title>p').text();
-                console.log(select_n);
-                if (clicked_div_phone.includes(select_n)) {
-                    console.log("已存在");
-                    clicked_div_phone = clicked_div_phone.filter(function (data) {
-                        return data !== select_n;
-                    })
-                    $("#selected_div_bg").empty();
-                    $.get('/mydata/phlist', function (req_ph_list) {
-                        for (var i = 0; i < req_ph_list.length; i++) {
-                            creat_selected_div(req_ph_list[i], clicked_div_phone);
-                        }
-                    })
-                }
-                else {
-                    clicked_div_phone.push(select_n);
-                    $("#selected_div_bg").empty();
-                    $.get('/mydata/phlist', function (req_ph_list) {
-                        for (var i = 0; i < req_ph_list.length; i++) {
-                            creat_selected_div(req_ph_list[i], clicked_div_phone);
-                        }
-                    })
-                }
-            });
-
-            $(document).on('click', 'div.div_phone_2', function () {
-                $(this).toggleClass('clicked');
-                var select_n = $(this).find('li.div_phone_text_li_title>p').text();
-                console.log(select_n);
-                if (clicked_div_phone.includes(select_n)) {
-                    console.log("已存在");
-                    clicked_div_phone = clicked_div_phone.filter(function (data) {
-                        return data !== select_n;
-                    })
-                    $("#selected_div_bg").empty();
-                    $.get('/mydata/phlist', function (req_ph_list) {
-                        for (var i = 0; i < req_ph_list.length; i++) {
-                            creat_selected_div(req_ph_list[i], clicked_div_phone);
-                        }
-                    })
-                }
-                else {
-                    clicked_div_phone.push(select_n);
-                    $("#selected_div_bg").empty();
-                    $.get('/mydata/phlist', function (req_ph_list) {
-                        for (var i = 0; i < req_ph_list.length; i++) {
-                            creat_selected_div(req_ph_list[i], clicked_div_phone);
-                        }
-                    })
-                }
-            });
-            // ========== 手機塊點擊 Function End ========== //
-
-
-        });
 
         // ========== 創建選起來的 Function start ========== //
         function creat_selected_div(req_JSON, req_clicked_div_phone) {
@@ -500,6 +542,7 @@
                                 <p>${req_JSON.ph_name}</p>
                         </div>`
                     )
+                    new SimpleBar($('#selected_div_bg_bg')[0]);
                 }
             }
         }
@@ -700,11 +743,11 @@
             }
             else if (i % 4 == 1) {
                 $(`div.div_phone_bg${y}_1`).append(
-                    `<div id="div_phone_${x.ph_id}" class="div_phone_2 col-md-6 mb-3 me-md-3 mt-md-0">
+                    `<div id="div_phone_${x.ph_id}" class="div_phone col-md-6 mb-3 me-md-3 mt-md-0">
                         <div class="div_phone_img_container">
                             <img src="${x.ph_img}" alt="還未設定圖片" class="div_phone_img">
                         </div>
-                        <div class="div_phone_text_2">
+                        <div class="div_phone_text">
                             <ul>
                                 <li class="div_phone_text_li_title">
                                     <p>${x.ph_name}</p>
@@ -769,11 +812,11 @@
             }
             else if (i % 4 == 3) {
                 $(`div.div_phone_bg${y}_2`).append(
-                    `<div id="div_phone_${x.ph_id}" class="div_phone_2 col-md-6 mb-3 me-md-3 mt-md-0">
+                    `<div id="div_phone_${x.ph_id}" class="div_phone col-md-6 mb-3 me-md-3 mt-md-0">
                         <div class="div_phone_img_container">
                             <img src="${x.ph_img}" alt="還未設定圖片" class="div_phone_img">
                         </div>
-                        <div class="div_phone_text_2">
+                        <div class="div_phone_text">
                             <ul>
                                 <li class="div_phone_text_li_title">
                                     <p>${x.ph_name}</p>
@@ -816,6 +859,10 @@
 
     </script>
     <!-- ========== JS end ========== -->
+
+
+    <!-- Perfect Scrollbar -->
+    <!-- <script src="https://unpkg.com/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script> -->
 </body>
 
 </html>

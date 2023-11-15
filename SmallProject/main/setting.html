@@ -56,8 +56,46 @@
             flex: 1;
         }
 
+        input.same_name {
+            border: 2px solid red !important;
+        }
+
         .separator {
             margin: 0 5px;
+        }
+
+        hr.my_hr {
+            color: lightseagreen;
+        }
+
+        div.div_btn {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        a.btn_Y {
+            border: 1px solid lightseagreen !important;
+            border-radius: 10px;
+            color: lightseagreen;
+            margin-right: 30px;
+        }
+
+        a.btn_Y:hover {
+            background-color: lightseagreen !important;
+            color: floralwhite;
+        }
+
+        a.btn_N {
+            border: 1px solid red !important;
+            border-radius: 10px;
+            color: red;
+            margin-left: 30px;
+        }
+
+        a.btn_N:hover {
+            background-color: red !important;
+            color: floralwhite;
         }
     </style>
 
@@ -75,20 +113,20 @@
         <div id="setting_form_div">
             <form>
                 <div class="mb-3">
-                    <label for="nph_name" class="my_input_title">手機名稱：</label>
-                    <input id="nph_name" class="form-control my_input" placeholder="Ex. iPhone 15">
+                    <label for="ph_name" class="my_input_title">手機名稱：</label>
+                    <input id="ph_name" class="form-control my_input" placeholder="Ex. iPhone 15">
                 </div>
                 <div class="mb-3">
-                    <label for="nph_brand" class="my_input_title">品牌：</label>
-                    <input id="nph_brand" class="form-control my_input" placeholder="Ex. Apple">
+                    <label for="ph_brand" class="my_input_title">品牌：</label>
+                    <input id="ph_brand" class="form-control my_input" placeholder="Ex. Apple">
                 </div>
                 <div class="mb-3">
-                    <label for="nph_cpu" class="my_input_title">處理器：</label>
-                    <input id="nph_cpu" class="form-control my_input" placeholder="Ex. A16">
+                    <label for="ph_cpu" class="my_input_title">處理器：</label>
+                    <input id="ph_cpu" class="form-control my_input" placeholder="Ex. A16">
                 </div>
                 <div class="mb-3">
-                    <label for="nscr_size" class="my_input_title">螢幕尺吋：</label>
-                    <select id="nscr_size" class="form-select my_input" aria-label="請選擇螢幕尺吋">
+                    <label for="scr_size" class="my_input_title">螢幕尺吋：</label>
+                    <select id="scr_size" class="form-select my_input" aria-label="請選擇螢幕尺吋">
                         <option selected disabled>請選擇</option>
                         <option value="57_in">5.7 吋</option>
                         <option value="58_in">5.8 吋</option>
@@ -105,87 +143,161 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="nscr_panel" class="my_input_title">螢幕面板：</label>
-                    <input id="nscr_panel" class="form-control my_input" placeholder="Ex. OLED">
+                    <label for="scr_panel" class="my_input_title">螢幕面板：</label>
+                    <input id="scr_panel" class="form-control my_input" placeholder="Ex. OLED">
                 </div>
                 <div class="mb-3">
-                    <label for="nscr_refresh" class="my_input_title">螢幕更新率：</label>
-                    <input id="nscr_refresh" class="form-control my_input" placeholder="Ex. 60">
+                    <label for="scr_refresh" class="my_input_title">螢幕更新率：</label>
+                    <input id="scr_refresh" class="form-control my_input" placeholder="Ex. 60">
                 </div>
                 <div class="mb-3">
-                    <label for="nscr_resolution" class="my_input_title">螢幕解析度：</label>
-                    <div class=" input_container">
-                        <input id="nscr_resolution" class="form-control my_input" placeholder="Ex. 2556">
-                        <span class="separator"> x </span>
-                        <input class="form-control my_input" placeholder="Ex. 1179">
-                    </div>
+                    <label for="scr_resolution" class="my_input_title">螢幕解析度：</label>
+                    <input id="scr_resolution" class="form-control my_input" placeholder="Ex. 2556 x 1179">
                 </div>
                 <div class="mb-3">
-                    <label for="nph_ram" class="my_input_title">記憶體(GB)：</label>
-                    <input id="nph_ram" class="form-control my_input" placeholder="Ex. 6">
+                    <label for="ph_ram" class="my_input_title">記憶體(GB)：</label>
+                    <input id="ph_ram" class="form-control my_input" placeholder="Ex. 6">
                 </div>
                 <div class="mb-3">
-                    <label for="nph_rom" class="my_input_title">儲存容量(GB)：</label>
-                    <input id="nph_rom" class="form-control my_input" placeholder="Ex. 128/256/512">
+                    <label for="ph_rom" class="my_input_title">儲存容量(GB)：</label>
+                    <input id="ph_rom" class="form-control my_input" placeholder="Ex. 128/256/512">
                 </div>
                 <div class="mb-3">
-                    <label for="nph_weight" class="my_input_title">重量(g)：</label>
-                    <input id="nph_weight" class="form-control my_input" placeholder="Ex. 171">
+                    <label for="ph_weight" class="my_input_title">重量(g)：</label>
+                    <input id="ph_weight" class="form-control my_input" placeholder="Ex. 171">
                 </div>
                 <div class="mb-3">
-                    <label for="nph_rwdr" class="my_input_title">防水防塵等級：</label>
-                    <input id="nph_rwdr" class="form-control my_input" placeholder="Ex. IP68">
+                    <label for="ph_rwdr" class="my_input_title">防水防塵等級：</label>
+                    <input id="ph_rwdr" class="form-control my_input" placeholder="Ex. IP68">
                 </div>
                 <div class="mb-3">
-                    <label for="nph_wifi" class="my_input_title">支援 Wi‑Fi 協議：</label>
-                    <input id="nph_wifi" class="form-control my_input" placeholder="Ex. Wi‑Fi 6">
+                    <label for="ph_wifi" class="my_input_title">支援 Wi‑Fi 協議：</label>
+                    <input id="ph_wifi" class="form-control my_input" placeholder="Ex. Wi‑Fi 6">
+                </div>
+                <div class="mb-3">
+                    <label for="ph_port" class="my_input_title">連接埠協議：</label>
+                    <input id="ph_port" class="form-control my_input" placeholder="Ex. USB-C 2.0 (480Mb/s)">
+                </div>
+                <div class="mb-3">
+                    <label for="ph_bat" class="my_input_title">電池電量(mAh)：</label>
+                    <input id="ph_bat" class="form-control my_input" placeholder="Ex. 3349">
+                </div>
+                <div class="mb-3">
+                    <label for="ph_wirelesschar" class="my_input_title">無線充電協議：</label>
+                    <input id="ph_wirelesschar" class="form-control my_input" placeholder="Ex. MagSafe/Qi">
+                </div>
+                <div class="mb-3">
+                    <label for="ph_dsim" class="my_input_title">雙 SIM 卡種類：</label>
+                    <input id="ph_dsim" class="form-control my_input" placeholder="Ex. nano-SIM+eSIM">
+                </div>
+                <div class="mb-3">
+                    <label for="ph_url" class="my_input_title">官方網站：</label>
+                    <input id="ph_url" class="form-control my_input" placeholder="Ex. https://www.apple.com">
+                </div>
+                <div class="mb-3">
+                    <label for="ph_img" class="my_input_title">圖片路徑：</label>
+                    <input id="ph_img" class="form-control my_input" placeholder="Ex. ./img/iphone_15_01.jpg">
                 </div>
                 <div>
                     <input type="checkbox" id="ph_5g" class="form-check-input">
                     <label class="form-check-label mb-3" for="ph_5g">是否支援 5G</label>
-                </div>            
-                <div class="mb-3">
-                    <label for="nph_port" class="my_input_title">連接埠協議：</label>
-                    <input id="nph_port" class="form-control my_input" placeholder="Ex. USB-C 2.0 (480Mb/s)">
-                </div>
-                <div class="mb-3">
-                    <label for="nph_bat" class="my_input_title">電池電量(mAh)：</label>
-                    <input id="nph_bat" class="form-control my_input" placeholder="Ex. 3349">
-                </div>
-                <div class="mb-3">
-                    <label for="nph_wirelesschar" class="my_input_title">無線充電協議：</label>
-                    <input id="nph_wirelesschar" class="form-control my_input" placeholder="Ex. MagSafe/Qi">
                 </div>
                 <div>
                     <input type="checkbox" id="ph_sd" class="form-check-input">
                     <label class="form-check-label mb-3" for="ph_sd">是否支援 SD 卡擴充</label>
                 </div>
-                <div class="mb-3">
-                    <label for="nph_dsim" class="my_input_title">雙 SIM 卡種類：</label>
-                    <input id="nph_dsim" class="form-control my_input" placeholder="Ex. nano-SIM+eSIM">
-                </div> 
                 <div>
                     <input type="checkbox" id="ph_35" class="form-check-input">
                     <label class="form-check-label mb-3" for="ph_35">是否有 3.5mm 耳機孔</label>
                 </div>
-                <div class="mb-3">
-                    <label for="nph_url" class="my_input_title">官方網站：</label>
-                    <input id="nph_url" class="form-control my_input" placeholder="Ex. https://www.apple.com">
-                </div> 
-                <div class="mb-3">
-                    <label for="nph_img" class="my_input_title">圖片路徑：</label>
-                    <input id="nph_img" class="form-control my_input" placeholder="Ex. ./img/iphone_15_01.jpg">
-                </div>  
             </form>
-            <hr>
-            <button>確定</button>
-            <button>取消</button>
-
-
-
+            <hr class="my_hr">
+            <div class="div_btn">
+                <a href="#" class="btn btn_Y">確定</a>
+                <a href="/back_home" class="btn btn_N">取消</a>
+            </div>
         </div>
-
     </div>
+
+
+    <!-- ===================================================================================================================== -->
+
+    <script>
+        $(document).ready(function () {
+            
+        })
+
+
+
+        var new_ph_key_arr = [];
+        $('input.form-control').each(function () {          // 取得所有input的id
+            var inputId = $(this).attr('id');
+            new_ph_key_arr.push(inputId);
+        });
+
+
+
+
+        function get_data() {
+            $.get('/mydata/phlist', function (req_ph_list) {
+                for (var i = 0; i < req_ph_list.length; i++) {
+
+                }
+            })
+        }
+        get_data();
+
+
+        
+        $(document).on('input', '#ph_name', function () {       // 檢查手機有無重復
+            var input_value = $(this).val();
+            $.get('/mydata/phlist', function (req_ph_list) {
+                for (var i = 0; i < req_ph_list.length; i++) {
+                    if (input_value==req_ph_list[i].ph_name) {
+                        alert("重複了");
+                        $('#ph_name').addClass('same_name');
+                        return;
+                    }
+                    else{
+                        $('#ph_name').removeClass('same_name');
+                    }
+                }
+            })
+        });
+
+        
+
+
+
+
+        // 按確認後，檢查是否有欄位未輸入，有的話提示並且不新增
+        $(document).on('click', 'a.btn_Y', function () {
+            for (var i = 0; i < new_ph_key_arr.length; i++) {
+                var input_value = $(`#${new_ph_key_arr[i]}`).val().trim();
+                if (input_value !== "") {
+                    window.location.href = "/back_home";
+                }
+                else {
+                    event.preventDefault();
+                    var no_enter = $(`label[for="${new_ph_key_arr[i]}"]`);
+                    var alert_text = no_enter.text();
+                    alert_text = alert_text.replace("：", "");
+                    console.log(new_ph_key_arr[i]);
+                    alert(`請確認 ${alert_text} 已輸入`);
+                }
+            }
+        })
+
+
+
+
+    </script>
+
+
+
+
+
+
 </body>
 
 </html>
