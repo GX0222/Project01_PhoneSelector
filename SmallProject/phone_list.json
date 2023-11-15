@@ -188,7 +188,7 @@
         "ph_port" : "USB-C 2.0 (480Mb/s)",
         "ph_port_id" : "20_480",
         "ph_bat" : 5000,
-        "ph_wirelesschar" : "N",
+        "ph_wirelesschar" : "無",
         "ph_sd" : "Y",
         "ph_dsim" : "雙nano-SIM",
         "ph_35" : "Y",

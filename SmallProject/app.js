@@ -1,13 +1,14 @@
 var express = require("express");
 var cors = require("cors");
+var path = require('path');
 var app = express();
 var bodyParser = require('body-parser');
-app.use( express.json() );
-app.use( express.urlencoded({extended: false}) );
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
-app.use( express.static("main")  );
-app.use( express.json() );
-app.use( express.urlencoded( {extended: true}) );
+app.use(express.static("main"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 var fs = require("fs");
@@ -18,19 +19,26 @@ console.log("Web伺服器就緒，開始接受用戶端連線.");
 console.log("「Ctrl + C」可結束伺服器程式.");
 
 
-app.get("/", function(req, res) {
-	res.sendFile(__dirname + "/main/My01.html"); 
-  });
+app.get("/", function (req, res) {
+	res.sendFile(__dirname + "/main/My01.html");
+});
 
 
 
 app.get("/mydata/phlist", function (req, res) {
 	var data = fs.readFileSync(phone_list);
 	var ph_list = JSON.parse(data);
-    res.set('Content-type', 'application/json');
-	res.send( JSON.stringify(ph_list) );
+	res.set('Content-type', 'application/json');
+	res.send(JSON.stringify(ph_list));
 })
 
+app.get('/open_setting', function(req, res) {
+	res.sendFile(path.join(__dirname, 'main', 'setting.html'));
+});
+
+app.get('/back_home', function(req, res) {
+	res.sendFile(path.join(__dirname, 'main', 'My01.html'));
+});
 
 
 
@@ -82,8 +90,8 @@ app.get("/mydata/phlist", function (req, res) {
 // 			break;
 // 		}
 // 	}
-// 	fs.writeFileSync("./data.json", JSON.stringify(todoList, null, "\t"));	
-// 	res.send("row updated."); 
+// 	fs.writeFileSync("./data.json", JSON.stringify(todoList, null, "\t"));
+// 	res.send("row updated.");
 // })
 
 // app.delete("/todo/delete/:id", function (req, res) {
@@ -103,6 +111,6 @@ app.get("/mydata/phlist", function (req, res) {
 //     }
 
 //     todoList.splice(deleteIndex, 1);
-//     fs.writeFileSync("./data.json", JSON.stringify(todoList, null, "\t"));	
+//     fs.writeFileSync("./data.json", JSON.stringify(todoList, null, "\t"));
 //     res.send("row deleted.");
 // })

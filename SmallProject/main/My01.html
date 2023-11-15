@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>手機篩選器</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
@@ -17,6 +18,8 @@
         li.nav-item>a.active {
             color: lightseagreen !important;
         }
+
+
 
         div.selected_phone_div {
             height: 200px;
@@ -240,8 +243,17 @@
                     </li>
                 </ul>
                 <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="搜尋" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    <input id="search_input" class="form-control me-2" type="search" placeholder="搜尋"
+                        aria-label="Search">
+                    <button id="search_btn" class="btn btn-outline-success" type="submit">
+                        <span class="material-icons" style="vertical-align: middle;">
+                            search
+                        </span>
+                    </button>
+                    <a id="stting_btn" class="btn material-icons"
+                        style="vertical-align: middle; background: none; border: none;" href="/open_setting">
+                        settings
+                    </a>
                 </form>
             </div>
         </div>
@@ -473,6 +485,8 @@
                 }
             });
             // ========== 手機塊點擊 Function End ========== //
+
+
         });
 
         // ========== 創建選起來的 Function start ========== //
@@ -480,7 +494,6 @@
             // console.log(req_clicked_div_phone);
             for (var i = 0; i < req_clicked_div_phone.length; i++) {
                 if (req_JSON.ph_name == req_clicked_div_phone[i]) {
-                    console.log("有近")
                     $("#selected_div_bg").append(
                         `<div>
                             <img src="${req_JSON.ph_img}" alt="">
@@ -490,9 +503,6 @@
                 }
             }
         }
-
-
-
         // ========== 創建選起來的 Function start ========== //
 
 
@@ -662,7 +672,22 @@
                                             <p>${x.ph_name}</p>
                                         </li>
                                         <li>
+                                            <p>品牌：${x.ph_brand}</p>
+                                        </li>
+                                        <li>
                                             <p>處理器：${x.ph_cpu}</p>
+                                        </li>
+                                        <li>
+                                            <p>螢幕尺吋：${x.scr_size}</p>
+                                        </li>
+                                        <li>
+                                            <p>螢幕更新率：${x.scr_refresh} hz</p>
+                                        </li>
+                                        <li>
+                                            <p>無線充電：${x.ph_wirelesschar}</p>
+                                        </li>
+                                        <li>
+                                            <p>重量：${x.ph_weight}g</p>
                                         </li>
                                     </ul>
                                 </div>
@@ -685,7 +710,22 @@
                                     <p>${x.ph_name}</p>
                                 </li>
                                 <li>
+                                    <p>品牌：${x.ph_brand}</p>
+                                </li>
+                                <li>
                                     <p>處理器：${x.ph_cpu}</p>
+                                </li>
+                                <li>
+                                    <p>螢幕尺吋：${x.scr_size}</p>
+                                </li>
+                                <li>
+                                    <p>螢幕更新率：${x.scr_refresh} hz</p>
+                                </li>
+                                <li>
+                                    <p>無線充電：${x.ph_wirelesschar}</p>
+                                </li>
+                                <li>
+                                    <p>重量：${x.ph_weight}g</p>
                                 </li>
                             </ul>
                         </div>
@@ -705,7 +745,22 @@
                                     <p>${x.ph_name}</p>
                                 </li>
                                 <li>
+                                    <p>品牌：${x.ph_brand}</p>
+                                </li>
+                                <li>
                                     <p>處理器：${x.ph_cpu}</p>
+                                </li>
+                                <li>
+                                    <p>螢幕尺吋：${x.scr_size}</p>
+                                </li>
+                                <li>
+                                    <p>螢幕更新率：${x.scr_refresh} hz</p>
+                                </li>
+                                <li>
+                                    <p>無線充電：${x.ph_wirelesschar}</p>
+                                </li>
+                                <li>
+                                    <p>重量：${x.ph_weight}g</p>
                                 </li>
                             </ul>
                         </div>
@@ -724,7 +779,22 @@
                                     <p>${x.ph_name}</p>
                                 </li>
                                 <li>
+                                    <p>品牌：${x.ph_brand}</p>
+                                </li>
+                                <li>
                                     <p>處理器：${x.ph_cpu}</p>
+                                </li>
+                                <li>
+                                    <p>螢幕尺吋：${x.scr_size}</p>
+                                </li>
+                                <li>
+                                    <p>螢幕更新率：${x.scr_refresh} hz</p>
+                                </li>
+                                <li>
+                                    <p>無線充電：${x.ph_wirelesschar}</p>
+                                </li>
+                                <li>
+                                    <p>重量：${x.ph_weight}g</p>
                                 </li>
                             </ul>
                         </div>
@@ -735,6 +805,12 @@
         }
 
         // ========== 創建手機塊 Function end ========== //
+
+
+        function open_setting() {
+            window.location.href = '/open_setting';
+        }
+
 
 
 
