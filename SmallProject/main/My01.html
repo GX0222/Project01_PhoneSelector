@@ -362,6 +362,8 @@
                     phone_ch_div_ceat("處理器", "ph_cpu_id", req_ph_list[i].ph_cpu_id, req_ph_list[i].ph_cpu, i, req_ph_list.length);
                     phone_ch_div_ceat("螢幕尺寸", "scr_size_id", req_ph_list[i].scr_size_id, req_ph_list[i].scr_size, i, req_ph_list.length);
                     phone_ch_div_ceat("螢幕更新率", "scr_refresh", req_ph_list[i].scr_refresh, req_ph_list[i].scr_refresh + " hz", i, req_ph_list.length);
+                    phone_ch_div_ceat("記憶體", "ph_ram", req_ph_list[i].ph_ram, req_ph_list[i].ph_ram + " GB", i, req_ph_list.length);
+                    phone_ch_div_ceat("儲存容量", "ph_rom", req_ph_list[i].ph_rom, req_ph_list[i].ph_rom + " GB", i, req_ph_list.length);
                     phone_ch_div_ceat("Wifi", "ph_wifi_id", req_ph_list[i].ph_wifi_id, req_ph_list[i].ph_wifi, i, req_ph_list.length);
                     phone_ch_div_ceat("傳輸接口", "ph_port_id", req_ph_list[i].ph_port_id, req_ph_list[i].ph_port, i, req_ph_list.length);
                     phone_div_creat(req_ph_list[i], i);
@@ -549,7 +551,7 @@
         var ch_brand_array = [];
         function phone_ch_div_ceat(title_name, creat_key, creat_value_for_id, show_name, i, fun_end) {
             ch_brand_array.push(creat_value_for_id);
-
+            var replace_value = str_replace(creat_value_for_id);
             let old_length = ch_brand_array.length;
             ch_brand_array = ch_brand_array.filter(function (item, index, array) {
                 return array.indexOf(item) === index;
@@ -560,22 +562,22 @@
                     `<ul class="ch_ul ps-3 ch_creat_ul_${title_name}">
                         <span class="select_title ch_creat_title_${title_name}">${title_name}</span>
                         <li>
-                            <input id="ch_${creat_value_for_id}" type="checkbox" class="form-check-input ch_checkbox">
-                                <label class="form-check-label" for="ch_${creat_value_for_id}">&nbsp;${show_name}</label>
+                            <input id="ch_${replace_value}" type="checkbox" class="form-check-input ch_checkbox">
+                                <label class="form-check-label" for="ch_${replace_value}">&nbsp;${show_name}</label>
                         </li>
                     </ul>`
                 )
-                ch_click(`ch_${creat_value_for_id}`, creat_key, creat_value_for_id);
+                ch_click(`ch_${replace_value}`, creat_key, creat_value_for_id);
             }
             else if (old_length == ch_brand_array.length) {
                 $(`ul.ch_creat_ul_${title_name}`).append(
                     `<li>
-                        <input id="ch_${creat_value_for_id}" type="checkbox" class="form-check-input ch_checkbox">
-                            <label class="form-check-label" for="ch_${creat_value_for_id}">&nbsp;${show_name}</label>
+                        <input id="ch_${replace_value}" type="checkbox" class="form-check-input ch_checkbox">
+                            <label class="form-check-label" for="ch_${replace_value}">&nbsp;${show_name}</label>
                     </li>`
 
                 )
-                ch_click(`ch_${creat_value_for_id}`, creat_key, creat_value_for_id);
+                ch_click(`ch_${replace_value}`, creat_key, creat_value_for_id);
             }
             i++;
             if (i == fun_end) {
@@ -743,6 +745,17 @@
         // ========== 選擇列點擊 Function End ========== //
 
 
+
+        // ========== 替換掉 "/", " ", "-" Start ========== //
+        function str_replace(req_str) {
+            if(typeof req_str === 'string') {
+                var res_str = req_str.replace(/[\/\s-]/g, "_");
+                return res_str;
+            } else {
+                return req_str;
+            }
+        }
+        // ========== 替換掉 "/", " ", "-" End ========== //
 
 
 
