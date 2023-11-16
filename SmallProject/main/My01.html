@@ -361,7 +361,7 @@
             console.log("Document ready!");
             // ========== 手機塊點擊 Function Start ========== //
             var clicked_div_phone = [];
-            $(document).on('click', 'div.div_phone', function () {
+            $(document).on('click', 'div.div_phone:not(li.div_phone_text_li_title>p)', function () {
                 console.log("clicked");
                 $(this).toggleClass('clicked');
                 var select_n = $(this).find('li.div_phone_text_li_title>p').text();
@@ -389,33 +389,56 @@
                 }
             });
 
-            $(document).on('click', 'div.div_phone_2', function () {
-                $(this).toggleClass('clicked');
-                var select_n = $(this).find('li.div_phone_text_li_title>p').text();
-                console.log(select_n);
-                if (clicked_div_phone.includes(select_n)) {
-                    console.log("已存在");
-                    clicked_div_phone = clicked_div_phone.filter(function (data) {
-                        return data !== select_n;
-                    })
-                    $("#selected_div_bg").empty();
-                    $.get('/mydata/phlist', function (req_ph_list) {
-                        for (var i = 0; i < req_ph_list.length; i++) {
-                            creat_selected_div(req_ph_list[i], clicked_div_phone);
-                        }
-                    })
-                }
-                else {
-                    clicked_div_phone.push(select_n);
-                    $("#selected_div_bg").empty();
-                    $.get('/mydata/phlist', function (req_ph_list) {
-                        for (var i = 0; i < req_ph_list.length; i++) {
-                            creat_selected_div(req_ph_list[i], clicked_div_phone);
-                        }
-                    })
+            $(document).on('click', 'div.div_phone_2:not(li.div_phone_text_li_title>p)', function () {
+                if (!$(e.target).is('p')) {
+                    $(this).toggleClass('clicked');
+                    var select_n = $(this).find('li.div_phone_text_li_title>p').text();
+                    console.log(select_n);
+                    if (clicked_div_phone.includes(select_n)) {
+                        console.log("已存在");
+                        clicked_div_phone = clicked_div_phone.filter(function (data) {
+                            return data !== select_n;
+                        })
+                        $("#selected_div_bg").empty();
+                        $.get('/mydata/phlist', function (req_ph_list) {
+                            for (var i = 0; i < req_ph_list.length; i++) {
+                                creat_selected_div(req_ph_list[i], clicked_div_phone);
+                            }
+                        })
+                    }
+                    else {
+                        clicked_div_phone.push(select_n);
+                        $("#selected_div_bg").empty();
+                        $.get('/mydata/phlist', function (req_ph_list) {
+                            for (var i = 0; i < req_ph_list.length; i++) {
+                                creat_selected_div(req_ph_list[i], clicked_div_phone);
+                            }
+                        })
+                    }
                 }
             });
             // ========== 手機塊點擊 Function End ========== //
+
+
+
+
+            // ========== 超連結 Start ========== //
+            $(document).on('click', '.selected_phone_div>div', function () {
+                var this_name = $(this).find('p').text();
+                $.get('/mydata/phlist', function (req_ph_list) {
+                    for (var i = 0; i < req_ph_list.length; i++) {
+                        if (this_name == req_ph_list[i].ph_name) {
+                            var link_url = req_ph_list[i].ph_url;
+                            window.open(link_url, "_blank");
+                        }
+                    }
+                })
+            });
+
+            // ========== 超連結 End ========== //
+
+
+
 
 
 

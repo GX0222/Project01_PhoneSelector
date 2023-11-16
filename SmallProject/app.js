@@ -41,7 +41,18 @@ app.get('/back_home', function(req, res) {
 	res.sendFile(path.join(__dirname, 'main', 'My01.html'));
 });
 
-
+// app.post("/new_data", function (req, res) {
+// 	var data = fs.readFileSync(phone_list);
+// 	var phList = JSON.parse(data);
+// 	var item = {
+// 		"todoTableId": new Date().getTime(),
+// 		"title": req.body.title,
+// 		"isComplete": req.body.isComplete
+// 	};
+// 	phList.push(item);
+// 	fs.writeFileSync("./data.json", JSON.stringify(phList, null, "\t"));
+// 	res.send("row inserted.");
+// })
 
 
 
