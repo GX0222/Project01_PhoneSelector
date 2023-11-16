@@ -30,6 +30,8 @@
         div#selected_div_bg_bg {
             height: 200px;
             margin: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
             padding: 0px;
             border-radius: 10px;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
@@ -44,6 +46,10 @@
             white-space: nowrap;
         }
 
+        div.selected_phone_div>div:hover {
+            transform: scale(1.05);
+        }
+
         div.selected_phone_div>div {
             height: auto;
             width: 200px;
@@ -53,6 +59,7 @@
             border-radius: 10px;
             box-shadow: inset 0 0 5px rgba(32, 178, 171, 1);
             flex-shrink: 0;
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
         div.selected_phone_div>div>img {
@@ -87,6 +94,13 @@
             border-color: rgba(200, 200, 200, 0.4);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             /* box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); */
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        div.div_phone:hover {
+            border-color: lightseagreen;
+            transform: scale(1.05);
+            z-index: 1 !important;
         }
 
         div.div_phone_2 {
@@ -219,6 +233,10 @@
             margin-left: -10px;
         }
 
+        ul.ch_ul>li:hover {
+            color: lightseagreen;
+        }
+
         ul.ch_ul>span {
             padding-left: 0px;
             margin-left: -10px;
@@ -244,6 +262,10 @@
         .simplebar-scrollbar::before {
             background-color: lightseagreen;
         }
+
+        li.div_phone_text_li_title>p:hover {
+            color: lightseagreen;
+        }
     </style>
 </head>
 
@@ -252,7 +274,7 @@
     <!-- ========== navbar start ========== -->
     <nav class="navbar navbar-expand-lg bg-light w-100" style=" top: 0px;">
         <div class="container-fluid">
-            <a href="#" class="navbar-brand" style="margin-right: 100px;">Logo</a> <!-- Logo-->
+            <a href="#" class="navbar-brand" style="margin-right: 100px; font-size:x-large;">Logo</a> <!-- Logo-->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -361,36 +383,39 @@
             console.log("Document ready!");
             // ========== 手機塊點擊 Function Start ========== //
             var clicked_div_phone = [];
-            $(document).on('click', 'div.div_phone:not(li.div_phone_text_li_title>p)', function () {
+            $(document).on('click', 'div.div_phone:not(li.div_phone_text_li_title>p)', function (e) {
                 console.log("clicked");
-                $(this).toggleClass('clicked');
-                var select_n = $(this).find('li.div_phone_text_li_title>p').text();
-                console.log(select_n);
-                if (clicked_div_phone.includes(select_n)) {
-                    console.log("已存在");
-                    clicked_div_phone = clicked_div_phone.filter(function (data) {
-                        return data !== select_n;
-                    })
-                    $("#selected_div_bg").empty();
-                    $.get('/mydata/phlist', function (req_ph_list) {
-                        for (var i = 0; i < req_ph_list.length; i++) {
-                            creat_selected_div(req_ph_list[i], clicked_div_phone);
-                        }
-                    })
-                }
-                else {
-                    clicked_div_phone.push(select_n);
-                    $("#selected_div_bg").empty();
-                    $.get('/mydata/phlist', function (req_ph_list) {
-                        for (var i = 0; i < req_ph_list.length; i++) {
-                            creat_selected_div(req_ph_list[i], clicked_div_phone);
-                        }
-                    })
+                if (!$(e.target).is('li.div_phone_text_li_title>p')) {
+                    $(this).toggleClass('clicked');
+                    var select_n = $(this).find('li.div_phone_text_li_title>p').text();
+                    console.log(select_n);
+                    if (clicked_div_phone.includes(select_n)) {
+                        console.log("已存在");
+                        clicked_div_phone = clicked_div_phone.filter(function (data) {
+                            return data !== select_n;
+                        })
+                        $("#selected_div_bg").empty();
+                        $.get('/mydata/phlist', function (req_ph_list) {
+                            for (var i = 0; i < req_ph_list.length; i++) {
+                                creat_selected_div(req_ph_list[i], clicked_div_phone);
+                            }
+                        })
+                    }
+                    else {
+                        clicked_div_phone.push(select_n);
+                        $("#selected_div_bg").empty();
+                        $.get('/mydata/phlist', function (req_ph_list) {
+                            for (var i = 0; i < req_ph_list.length; i++) {
+                                creat_selected_div(req_ph_list[i], clicked_div_phone);
+                            }
+                        })
+                    }
                 }
             });
 
-            $(document).on('click', 'div.div_phone_2:not(li.div_phone_text_li_title>p)', function () {
-                if (!$(e.target).is('p')) {
+
+            $(document).on('click', 'div.div_phone_2:not(li.div_phone_text_li_title>p)', function (e) {
+                if (!$(e.target).is('li.div_phone_text_li_title>p')) {
                     $(this).toggleClass('clicked');
                     var select_n = $(this).find('li.div_phone_text_li_title>p').text();
                     console.log(select_n);
@@ -425,6 +450,17 @@
             // ========== 超連結 Start ========== //
             $(document).on('click', '.selected_phone_div>div', function () {
                 var this_name = $(this).find('p').text();
+                $.get('/mydata/phlist', function (req_ph_list) {
+                    for (var i = 0; i < req_ph_list.length; i++) {
+                        if (this_name == req_ph_list[i].ph_name) {
+                            var link_url = req_ph_list[i].ph_url;
+                            window.open(link_url, "_blank");
+                        }
+                    }
+                })
+            });
+            $(document).on('click', 'li.div_phone_text_li_title>p', function () {
+                var this_name = $(this).text();
                 $.get('/mydata/phlist', function (req_ph_list) {
                     for (var i = 0; i < req_ph_list.length; i++) {
                         if (this_name == req_ph_list[i].ph_name) {
